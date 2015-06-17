@@ -1,0 +1,11 @@
+VIM
+===
+This is a portable version of my vim setup
+
+After an initial checkout, you'll probably have to update the plugins (which
+have their own git repos by doing a :BundleInstall! )
+
+First, copy vimrc up to your home dir with
+
+    cp vimrc ~/.vimrc
+
