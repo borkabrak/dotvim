@@ -69,7 +69,7 @@ nmap ,c  <Plug>NERDCommenterToggle
 xmap ,cc <Plug>NERDCommenterComment
 nmap ,cc <Plug>NERDCommenterComment
 map ,, <Plug>(easymotion-prefix)
-nnoremap ,cl oconsole.log("");hhi
+nmap ,cl <Plug>NERDCommenterAlignLeft
 noremap ,Lgf :call OpenPartial()
 vnoremap ,Ld o{{ dd() }}F(a
 nmap ,LH ,Lh
@@ -633,11 +633,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 .git/COMMIT_EDITMSG
+badd +0 README.mkd
 argglobal
 silent! argdel *
-argadd .git/COMMIT_EDITMSG
-edit .git/COMMIT_EDITMSG
+argadd README.mkd
+edit README.mkd
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -659,8 +659,8 @@ setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
-setlocal commentstring=/*%s*/
+setlocal comments=fb:*,fb:-,fb:+,n:>
+setlocal commentstring=>\ %s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -676,8 +676,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'gitcommit'
-setlocal filetype=gitcommit
+if &filetype != 'markdown'
+setlocal filetype=markdown
 endif
 setlocal foldcolumn=0
 setlocal foldenable
@@ -689,35 +689,34 @@ set foldmethod=syntax
 setlocal foldmethod=syntax
 setlocal foldminlines=1
 setlocal foldnestmax=20
-set foldtext=fugitive#foldtext()
-setlocal foldtext=fugitive#foldtext()
+setlocal foldtext=foldtext()
 setlocal formatexpr=
-setlocal formatoptions=tcq
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatoptions=tcqln
+setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\|^[-*+]\\s\\+
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=0
 setlocal include=
-setlocal includeexpr=substitute(v:fname,'^[^/]\\+/','','')
+setlocal includeexpr=
 setlocal indentexpr=
 setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=git\ --git-dir='/home/jcarter/.vim/.git'\ show
+setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
 setlocal nolist
 setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
+setlocal matchpairs=(:),{:},[:],<:>
 setlocal modeline
 setlocal modifiable
 setlocal nrformats=octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=
-setlocal path=~/.vim/.git,~/.vim,
+setlocal omnifunc=htmlcomplete#CompleteTags
+setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -738,12 +737,12 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'gitcommit'
-setlocal syntax=gitcommit
+if &syntax != 'markdown'
+setlocal syntax=markdown
 endif
 setlocal tabstop=4
 setlocal tags=
-setlocal textwidth=72
+setlocal textwidth=78
 setlocal thesaurus=
 setlocal undofile
 setlocal undolevels=-123456
@@ -752,11 +751,11 @@ setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 32) / 64)
+let s:l = 5 - ((4 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+5
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
