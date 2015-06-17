@@ -2,3 +2,4 @@ undo
 backup
 swap
 tmp
+shutdown_session.vim
