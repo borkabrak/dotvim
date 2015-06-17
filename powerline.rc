@@ -1,0 +1,7 @@
+" vim:set ft=vim:
+let Powerline_symbols='unicode'
+let Powerline_symbols='unicode'
+let Powerline_cache_enabled = 0
+let Powerline_stl_path_style = 'relative'
+"let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
+let g:Powerline_dividers_override = ['▶', '❭', '◀', '❬']

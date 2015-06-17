@@ -1,0 +1,4 @@
+" vim:set ft=vim:
+noremap <F2> :NERDTreeToggle<cr>
+let NERDTreeDirArrows=1
+let NERDTreeShowBookmarks=1
