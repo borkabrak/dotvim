@@ -602,15 +602,6 @@ set mouse=a
 " Disabled because it messes up nvim's :terminal command
 "set shell=/usr/bin/env\ zsh\ -l
 
-" Shortcut to escape from terminal mode (NVIM only)
-" This is a remap of the command that normally switches to the previously
-" active window such that doing so escapes from terminal mode and THEN
-" switches windows.
-" Since it does the escape only from terminal mode, this means that the
-" command is the same to switch windows, whether we're in terminal mode or
-" not.  Kewl.
-tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
-
 " AHA-specific settings (Don't need this for home)
 " source ~/.vim/aha.vim
 
