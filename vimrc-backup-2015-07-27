@@ -14,20 +14,10 @@
 " ==============================================================================
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
-" Neovim doesn't require this, and indeed seems to flag it as an error.  :-/
-" I'm leaving it, though, because it doesn't actually cause any problems, and
-" I still might want to move back to regular vim at some point.
 set nocompatible
+let g:mapleader = ","
 
-"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 " VUNDLE
-"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-"
-" USEFUL VUNDLE COMMANDS
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
 
 " see :help vundle for more details or wiki for FAQ
 filetype off
@@ -42,136 +32,123 @@ call vundle#begin()
   Plugin 'gmarik/vundle.vim'
 
   " vim-misc is required for vim-notes
-  Plugin 'xolox/vim-misc'
+  " Bundle 'xolox/vim-misc'
   " Run with :Note
-  Plugin 'xolox/vim-notes'
+  " Bundle 'xolox/vim-notes'
 
   " Colorschemes!
-  Plugin 'flazz/vim-colorschemes'
-  Plugin 'altercation/vim-colors-solarized'
-  "Light
-  Plugin 'scheakur/vim-scheakur'
-  "dark, greenish
-  Plugin 'gryftir/gryffin'
-  "Light, better than morning
-  Plugin 'jlesquembre/peaksea'
-  Plugin 'kreeger/benlight'
-  Plugin 'trusktr/seti.vim'
+  Bundle 'flazz/vim-colorschemes'
+  Bundle 'altercation/vim-colors-solarized'
 
   " Trying out a different status line..
-  Plugin 'bling/vim-airline'
+  Bundle 'bling/vim-airline'
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+    " let g:airline_left_sep = ''
+    " let g:airline_left_alt_sep = ''
+    " let g:airline_right_sep = ''
+    " let g:airline_right_alt_sep = ''
+    " let g:airline_symbols.branch = ''
+    " let g:airline_symbols.readonly = ''
+    " let g:airline_symbols.linenr = ''
+    let g:airline_left_sep = '»'
+    let g:airline_left_sep = '▶'
+    let g:airline_right_sep = '«'
+    let g:airline_right_sep = '◀'
+    let g:airline_symbols.linenr = '␊'
+    let g:airline_symbols.linenr = '␤'
+    let g:airline_symbols.linenr = '¶'
+    let g:airline_symbols.branch = '⎇'
+    let g:airline_symbols.paste = 'ρ'
+    let g:airline_symbols.paste = 'Þ'
+    let g:airline_symbols.paste = '∥'
+    let g:airline_symbols.whitespace = 'Ξ'
+  endif
+  "'❭', '❬']
 
   " Sorta like vimium's helptags when browsing, but this is for moving around
   " in the file.  Key: <leader><leader>w
-  Plugin 'Lokaltog/vim-easymotion'
+  Bundle 'Lokaltog/vim-easymotion'
 
   " Have tags without thinking about them
-  "Bundle 'xolox/vim-easytags'
+"  Bundle 'xolox/vim-easytags'
 
   " Git interface.. don't really use it yet
-  Plugin 'tpope/vim-fugitive'
-
-  " Surround is kind of awesome for quotes and whatnot
-  Plugin 'tpope/vim-surround'
+  Bundle 'tpope/vim-fugitive'
 
   " A writing aid to 'hyperfocus' on what you're doing (goyo uses limelight)
-  Plugin 'junegunn/limelight.vim'
+  Bundle 'junegunn/limelight.vim'
   let g:limelight_conceal_ctermfg = 'gray'
-  Plugin 'junegunn/goyo.vim'
+  Bundle 'junegunn/goyo.vim'
   nnoremap <f4> :Goyo<cr>
 
   " Cool if I coded more scala..
   "Bundle 'derekwyatt/vim-scala'
 
   " Zen coding - the original (one I installed.  Default key: ^Y,)
-  Plugin 'mattn/emmet-vim'
+  Bundle 'mattn/emmet-vim'
 
   " The tried-and-true file browser
-  Plugin 'scrooloose/nerdtree'
+  Bundle 'scrooloose/nerdtree'
 
   " Streamlined commenting
-  Plugin 'scrooloose/nerdcommenter'
+  Bundle 'scrooloose/nerdcommenter'
 
   " Live syntax checking
-  Plugin 'scrooloose/syntastic'
+  Bundle 'scrooloose/syntastic'
 
   " A different approach to file navigation.  This is kind of a game changer
   " for managing buffers
-  Plugin 'kien/ctrlp.vim'
+  Bundle 'kien/ctrlp.vim'
   " Make CtrlP rebuild its list next time
   nnoremap <f3> :CtrlPClearCache<cr>
   " Use CtrlP only on currently open buffers
   nnoremap <leader><C-P> :CtrlPBuffer<cr>
 
   " Some stuff requires vimproc..
-  Plugin 'Shougo/vimproc'
+  Bundle 'Shougo/vimproc'
 
   " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   " Unite promises to be a replacement for CtrlP (and more).
   " Read more at http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/
   " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Plugin 'shougo/unite.vim'
+  Bundle 'shougo/unite.vim'
 
   " A better file browser?
   "Bundle 'shougo/vimfiler.vim'
 
   " Maybe *this* is a better file browser. (Really, a cleanup of netrw's
   " native interface.)  Key: -
-  Plugin 'tpope/vim-vinegar'
+  Bundle 'tpope/vim-vinegar'
 
   " Coffeescript support
-  Plugin 'kchmck/vim-coffee-script'
+  Bundle 'kchmck/vim-coffee-script'
 
   " Better ga, e.g.
-  Plugin 'tpope/vim-characterize'
+  Bundle 'tpope/vim-characterize'
 
   " JSON manipulation and pretty-printing
   "   Get started with 'gqaj'
-  Plugin 'tpope/vim-jdaddy'
+  Bundle 'tpope/vim-jdaddy'
 
   " Laravel's Blade syntax
-  Plugin 'xsbeats/vim-blade'
+  Bundle 'xsbeats/vim-blade'
 
-  Plugin 'jceb/vim-orgmode'
+  Bundle 'jceb/vim-orgmode'
 
-  Plugin 'AndrewRadev/linediff.vim'
-
-  " Better vim digraphs, initially inspired by Damien Conway's 'More Instantly
-  " Better Vim' talk.
-  Plugin 'panozzaj/betterdigraphs.vim'
+  Bundle 'AndrewRadev/linediff.vim'
 
 " End plugin specifications
 call vundle#end()
 filetype plugin indent on
+" USEFUL VUNDLE COMMANDS
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
 
-"""""""""""""""""""
-" CONFIGURE PLUGINS
-"""""""""""""""""""
-if !exists('g:airline_symbols')
-let g:airline_symbols = {}
-" let g:airline_left_sep = ''
-" let g:airline_left_alt_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_right_alt_sep = ''
-" let g:airline_symbols.branch = ''
-" let g:airline_symbols.readonly = ''
-" let g:airline_symbols.linenr = ''
-"
-" let g:airline_left_sep = '»'
-" let g:airline_right_sep = '«'
-" let g:airline_symbols.linenr = '␤'
-" let g:airline_symbols.paste = 'ρ'
-" let g:airline_symbols.paste = 'Þ'
 
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-endif
-"'❭', '❬']
-"
+
 " Unite calls have to go here.  Something about having to call vundle#end
 " first?
 " call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -215,7 +192,6 @@ endfunction
 " Map commands for inside a unite window
 autocmd FileType unite call s:unite_my_settings()
 
-let g:mapleader = ","
 " Use unicode
 set encoding=utf-8
 
@@ -473,7 +449,7 @@ nnoremap  l
 
     " Open the link under the cursor in an external browser (w3m - console
     " based)
-    nnoremap <leader>W :!x-www-browser <cfile><cr>
+    nnoremap <leader>W :!w3m <cfile><cr>
 
 syntax enable
 
@@ -498,8 +474,7 @@ syntax enable
 " colorscheme solarized
 " colorscheme vividchalk
 " colorscheme 256-jungle
-colorscheme badwolf
-" colorscheme benlight
+ colorscheme badwolf
 
 runtime! macros/matchit.vim
 
@@ -590,8 +565,9 @@ nnoremap <leader>G :Goyo<cr>
 " source ~/.vim/netrw.rc
 
 " NERDTree
-noremap <F2> :NERDTreeFind<cr>
+noremap <F2> :NERDTreeToggle<cr>
 " Open NERDTree, putting the cursor on the current file
+nnoremap [26~ :NERDTreeFind<cr>
 let NERDTreeDirArrows=1
 let NERDTreeShowBookmarks=1
 
@@ -599,20 +575,10 @@ let NERDTreeShowBookmarks=1
 set mouse=a
 
 " Have commands run from :! use shell aliases
-" Disabled because it messes up nvim's :terminal command
-"set shell=/usr/bin/env\ zsh\ -l
+set shell=/usr/bin/env\ zsh\ -l
 
-" Shortcut to escape from terminal mode (NVIM only)
-" This is a remap of the command that normally switches to the previously
-" active window such that doing so escapes from terminal mode and THEN
-" switches windows.
-" Since it does the escape only from terminal mode, this means that the
-" command is the same to switch windows, whether we're in terminal mode or
-" not.  Kewl.
-tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
-
-" AHA-specific settings (Don't need this for home)
-" source ~/.vim/aha.vim
+" AHA-specific settings
+source ~/.vim/aha.vim
 
 " javascript help (NOTE: 'cl' conflicts with a mapping in nerdcommenter)
 nnoremap <leader>cl oconsole.log("");<esc>hhi
@@ -638,5 +604,37 @@ if &term =~ '^xterm-256color'
 
 endif
 
-" Digraphs - shortcuts for non-ASCII characters
-dig :) 9786
+set foldmethod=syntax
+
+" Indicate long lines
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
+runtime plugin/dragvisuals.vim                                  
+                                                                
+vmap  <expr>  <LEFT>   DVB_Drag('left')                         
+vmap  <expr>  <RIGHT>  DVB_Drag('right')                        
+vmap  <expr>  <DOWN>   DVB_Drag('down')                         
+vmap  <expr>  <UP>     DVB_Drag('up')                           
+vmap  <expr>  D        DVB_Duplicate()                          
+                                                                
+" Remove any introduced trailing whitespace after moving...     
+"let g:DVB_TrimWS = 1                                            
+
+
+vmap <expr>  ++  VMATH_YankAndAnalyse()                     
+nmap         ++  vip++                                       
+
+" This rewires n and N to do the highlighing...
+nnoremap <silent> n   n:call HLNext(0.4)<cr>
+nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
+
+" EITHER blink the line containing the match...
+function! HLNext (blinktime)
+    set invcursorline
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    set invcursorline
+    redraw
+endfunction
