@@ -482,28 +482,7 @@ nnoremap  l
 
 syntax enable
 
-" colorscheme delek " leaving this uncommented to sort of 'reset' the colorscheme when reloading this file
-" colorscheme darkblue
-" colorscheme torte
-" colorscheme silent
-" colorscheme intellij
-" colorscheme tesla
-" colorscheme bluegreen
-" colorscheme dante
-" colorscheme wombat256mod
-" colorscheme telstar
-" colorscheme adaryn
-" colorscheme vc
-" colorscheme manxome
-"  colorscheme Monokai
-" colorscheme codeschool
-" colorscheme distinguished
-" colorscheme vj
-" colorscheme solarized
-" colorscheme vividchalk
-" colorscheme 256-jungle
-colorscheme badwolf
-" colorscheme benlight
+source ~/.vim/colorscheme.vim
 
 runtime! macros/matchit.vim
 

@@ -4,7 +4,10 @@ swap
 tmp
 shutdown_session.vim
 
-# Ignore vundle-managed software.
+# Vundle-managed software takes care of itself
 #
 #   Because of how vundle works, these are each inidividual git repositories
 bundle/*
+
+# Don't track what colorscheme is used
+colorscheme.vim
