@@ -5,7 +5,13 @@ This is a portable version of my vim setup
 After an initial checkout, you'll probably have to update the plugins (which
 have their own git repos by doing a :BundleInstall! )
 
-First, copy vimrc up to your home dir with
+INSTALL
+-------
 
-    cp vimrc ~/.vimrc
+WARNING: I got into some trouble when I tried to check this out fresh onto my
+work machine (running vim under babun/cygwin).  The culprits seemed to be that
+core.autocrlf was set to 'true' globally, which changed all the files into
+something vim hated, and were difficult to fix because dos2unix rejected the
+control characters used in some of my mappings.
+
 
