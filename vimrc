@@ -575,6 +575,11 @@ endfunction
         vimgrep a:pattern **/*.php | copen 5
     endfunction
 
+" :Sudosave will write the file using sudo, if user is a sudoer
+command! Sudosave write !sudo tee % > /dev/null
+" :W is an alias for :Sudosave
+cnoreabbrev W Sudosave
+
 " A couple of mapping to step through quickfix results easier:
 nnoremap <leader>n :cnext<cr>
 nnoremap <leader>N :cprev<cr>
