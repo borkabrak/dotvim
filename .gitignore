@@ -9,5 +9,9 @@ shutdown_session.vim
 #   Because of how vundle works, these are each inidividual git repositories
 bundle/*
 
+# Except, of course, vundle itself.  This has the additional benefit of
+# preserving the 'bundle' directory
+!bundle/vundle.vim
+
 # Don't track what colorscheme is used
 colorscheme.vim
