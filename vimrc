@@ -616,6 +616,12 @@ set mouse=a
 " javascript help (NOTE: 'cl' conflicts with a mapping in nerdcommenter)
 nnoremap <leader>cl oconsole.log("");<esc>hhi
 
+" Format the current paragraph
+nnoremap <leader>Qp mt{gq}'t
+
+" Ctrl-C copies to system clipboard
+vnoremap  "+y:let @*=@+<cr>:echo "Selection copied to system clipboard"<cr>
+
 " Change the cursor to better indicate mode
 if &term =~ '^xterm-256color'
 
@@ -638,4 +644,7 @@ if &term =~ '^xterm-256color'
 endif
 
 " Digraphs - shortcuts for non-ASCII characters
+"   (Use ^k from insert mode, then type the first pair of characters to output
+"   the unicode character with the decimal representation that follows.
+
 dig :) 9786
