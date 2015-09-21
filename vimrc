@@ -136,10 +136,6 @@ call vundle#begin()
 
   Plugin 'AndrewRadev/linediff.vim'
 
-  " Better vim digraphs, initially inspired by Damien Conway's 'More Instantly
-  " Better Vim' talk.
-  Plugin 'panozzaj/betterdigraphs.vim'
-
 " End plugin specifications
 call vundle#end()
 filetype plugin indent on
