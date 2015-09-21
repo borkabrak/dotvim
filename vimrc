@@ -136,6 +136,13 @@ call vundle#begin()
 
   Plugin 'AndrewRadev/linediff.vim'
 
+  "Foldsearch:
+  " This plugin provides commands that fold away lines that don't match a
+  " specific search pattern. This pattern can be the word under the cursor, the
+  " last search pattern, a regular expression or spelling errors. There are also
+  " commands to change the context of the shown lines.
+  Plugin 'embear/vim-foldsearch'
+
 " End plugin specifications
 call vundle#end()
 filetype plugin indent on
