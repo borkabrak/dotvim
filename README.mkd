@@ -14,4 +14,17 @@ core.autocrlf was set to 'true' globally, which changed all the files into
 something vim hated, and were difficult to fix because dos2unix rejected the
 control characters used in some of my mappings.
 
+So, here are some at the moment probably incomplete directions for
+installation:
 
+WARNING: Do not have your global core.autocrlf = true
+
+1.) clone the repo into ~/.vim
+
+2.) clone Vundle into ~/.vim/bundle/vundle.vim
+
+3.) Fetch bundles:
+    - Start vim to load the vimrc listing the bundles
+    - Run :PluginInstall to install the bundles
+
+Ideally, you're done.  Restart vim to find out.

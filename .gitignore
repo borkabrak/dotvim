@@ -7,7 +7,7 @@ shutdown_session.vim
 # Vundle-managed software takes care of itself
 #
 #   Because of how vundle works, these are each inidividual git repositories
-bundle/*
+bundle
 
 # Except, of course, vundle itself.  This has the additional benefit of
 # preserving the 'bundle' directory
