@@ -199,7 +199,6 @@ nnoremap <leader>F :Unite -start-insert file_rec/async:!<cr>
 " let g:unite_source_history_yank_enable = 1
 " nnoremap <leader>y :<C-u>Unite history/yank<CR>
 
-
 function! s:unite_my_settings()"{{{
 
     nmap <buffer> <C-j>     <Plug>(unite_toggle_auto_preview)
@@ -212,8 +211,11 @@ endfunction
 autocmd FileType unite call s:unite_my_settings()
 
 let g:mapleader = ","
-" Use unicode
-set encoding=utf-8
+
+" Enable unicode (once)
+if &encoding !~ '^utf-8' 
+    set encoding=utf-8
+endif
 
 " Use 256 colors
 set t_Co=256
@@ -473,7 +475,6 @@ nnoremap  l
 
 syntax enable
 
-
 " colorscheme delek " leaving this uncommented to sort of 'reset' the colorscheme when reloading this file
 " colorscheme darkblue
 " colorscheme torte
@@ -529,7 +530,6 @@ set nohlsearch
 " code.) With a digraph, just hit ^K in insert mode, and type the
 " two-character abbreviation
 " dig CH 10003 " ✓ - check mark (This is actually on the digraph 'OK')
-
 
 " GOYO AND LIMELIGHT
 " I might not like this after a while, but I'm giving it a shot.  These two
