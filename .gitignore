@@ -3,3 +3,8 @@ backup
 swap
 tmp
 shutdown_session.vim
+
+# Ignore vundle-managed software.
+#
+#   Because of how vundle works, these are each inidividual git repositories
+bundle/*
