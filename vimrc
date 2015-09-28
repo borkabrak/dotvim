@@ -567,6 +567,8 @@ cnoreabbrev W Sudosave
 " A couple of mapping to step through quickfix results easier:
 nnoremap <leader>n :cnext<cr>
 nnoremap <leader>N :cprev<cr>
+" duplicate, yeah, but I keep trying it..
+nnoremap <leader>p :cprev<cr>
 
 " Toggle highlighting searches
 nnoremap <leader>h :set hlsearch!<cr>
@@ -598,7 +600,7 @@ set mouse=a
 " source ~/.vim/aha.vim
 
 " javascript help (NOTE: 'cl' conflicts with a mapping in nerdcommenter)
-nnoremap <leader>cl oconsole.log("");<esc>hhi
+nnoremap <leader>cL oconsole.log("");<esc>hhi
 
 " Format the current paragraph
 nnoremap <leader>Qp mt{gq}'t
