@@ -129,6 +129,11 @@ call vundle#begin()
   "   Get started with 'gqaj'
   Plugin 'tpope/vim-jdaddy'
 
+  " unimpaired.vim: pairs of handy bracket mappings http://www.vim.org/scripts/script.php?script_id=1590
+  " ( The proximate reason for installing this is to us [q/]q/[Q/]Q to step
+  " through the quickfix list. )
+  Plugin 'tpope/vim-unimpaired'
+
   " Laravel's Blade syntax
   Plugin 'xsbeats/vim-blade'
 
