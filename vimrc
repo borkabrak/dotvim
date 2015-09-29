@@ -148,6 +148,12 @@ call vundle#begin()
   " commands to change the context of the shown lines.
   Plugin 'embear/vim-foldsearch'
 
+  " The snippets engine
+  Plugin 'SirVer/ultisnips'
+
+  " The snippets themselves
+  Plugin 'honza/vim-snippets'
+
 " End plugin specifications
 call vundle#end()
 filetype plugin indent on
@@ -221,6 +227,15 @@ function! s:unite_my_settings()"{{{
 endfunction
 " Map commands for inside a unite window
 autocmd FileType unite call s:unite_my_settings()
+
+" Snippets
+" ==========
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+    " Let snippets split the window?
+    let g:UltiSnipsEditSplit="vertical"
 
 let g:mapleader = ","
 
