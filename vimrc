@@ -1,3 +1,13 @@
+" VIM CONFIGURATION
+" ===================
+"
+" TODO:
+" =======
+"
+" * Consider converting from Vundle to VimPlug
+"
+" * Check out tpope's plugins 'sensible' and 'sleuth'
+"
 " GENERAL TIPS:
 " ======================================================================
 "   :earlier and :later walk through changes to the buffer with respect
