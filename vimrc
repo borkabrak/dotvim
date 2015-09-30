@@ -460,17 +460,8 @@ nnoremap  l
     " run the current file
     nnoremap <Leader>r :!./%<cr>
 
-    " save and run 'make'
-    nnoremap <Leader>m :w<cr>:!make<cr>
-
     " make current file executable
     nnoremap <Leader>x :!chmod +x %<cr>
-
-    " run current file specifically in perl (works with no shebang)
-    nnoremap <Leader>P :!perl -wI . %<cr>
-
-    " run current file specifically in ruby (works with no shebang)
-    nnoremap <Leader>R :!ruby %<cr>
 
     " Underline the current line with various symbols.
     "   * underline length matches the line above
