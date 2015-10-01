@@ -40,28 +40,10 @@ set nocompatible
 " =======================================================================
 let g:mapleader = ","
 
-source ~/.vim/vundlerc.vim
-
-" =====
-" FOR SOME REASON, THESE CALLS TO UNITE FUNCTIONS CANNOT GO INSIDE VUNDLE SETUP:
-
-" Set Unite to act sorta like CtrlP:
-" ( Alternative prompt char: »)
-call unite#custom#profile('default', 'context', {
-\   'winheight': 10,
-\   'direction': 'botright',
-\   'prompt': '❯ ',
-\ })
-
-" Don't suggest certain file types to edit
-call unite#custom#source('file_rec,file_rec/async',
-    \ 'ignore_pattern', '.*\.exe$\|.*\.dll\|.*\.so')
-
-" Tell Unite to ignore the same globs the rest of vim does
-call unite#custom#source('file_rec,file_rec/async', 'ignore_globs', split(&wildignore, ','))
-
-" let g:unite_ignore_source_files = ['*.dll']
-" == END UNITE POST-VUNDLE CONFIG ===
+" =======================================
+" PLUGIN REGISTRATION AND CONFIGURATION USING THE VUNDLE PLUGIN MANAGER:
+  source ~/.vim/vundlerc.vim
+" =======================================
 
 " Enable unicode (once)
 if &encoding !~ '^utf-8'
