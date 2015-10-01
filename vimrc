@@ -8,6 +8,10 @@
 "
 " * Check out tpope's plugins 'sensible' and 'sleuth'
 "
+" * Detect and load AHA-specific settings dynamically
+"
+" * Resourcing vimrc like this doesn't actually check for a successful load
+"
 " GENERAL TIPS:
 " ======================================================================
 "   :earlier and :later walk through changes to the buffer with respect
@@ -29,25 +33,25 @@
 " I still might want to move back to regular vim at some point.
 set nocompatible
 
-"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-" VUNDLE
-"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-"
-" USEFUL VUNDLE COMMANDS
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+" =======================================================================
+" NOTE: Set mapleader BEFORE using it in mappings.
+" You wouldn't think this needs to be said, but it's already bitten me.
+" Twice.  :-D
+" =======================================================================
+let g:mapleader = ","
 
+"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+" VUNDLE - package manager for Vim plugins
+"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+" USEFUL VUNDLE COMMANDS:
+"   :PluginList          - list configured plugins
+"   :PluginInstall(!)    - install (update) plugins
+"   :PluginSearch(!) foo - search (or refresh cache first) for foo
+"   :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
 " see :help vundle for more details or wiki for FAQ
 filetype off
 set rtp+=~/.vim/bundle/vundle.vim
-
 call vundle#begin()
-" Add plugins for vundle to manage
-"
-" After adding, try :PluginInstall <plugin>
-
   " Vundle itself
   Plugin 'gmarik/vundle.vim'
 
@@ -70,6 +74,27 @@ call vundle#begin()
 
   " Trying out a different status line..
   Plugin 'bling/vim-airline'
+  if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+  " let g:airline_left_sep = ''
+  " let g:airline_left_alt_sep = ''
+  " let g:airline_right_sep = ''
+  " let g:airline_right_alt_sep = ''
+  " let g:airline_symbols.branch = ''
+  " let g:airline_symbols.readonly = ''
+  " let g:airline_symbols.linenr = ''
+  " let g:airline_left_sep = '»'
+  " let g:airline_right_sep = '«'
+  " let g:airline_symbols.linenr = '␤'
+  " let g:airline_symbols.paste = 'ρ'
+  " let g:airline_symbols.paste = 'Þ'
+  let g:airline_left_sep = '▶'
+  let g:airline_right_sep = '◀'
+  let g:airline_symbols.linenr = '¶'
+  let g:airline_symbols.branch = '⎇'
+  let g:airline_symbols.paste = '∥'
+  let g:airline_symbols.whitespace = 'Ξ'
+  endif
 
   " Sorta like vimium's helptags when browsing, but this is for moving around
   " in the file.  Key: <leader><leader>w
@@ -89,15 +114,28 @@ call vundle#begin()
   let g:limelight_conceal_ctermfg = 'gray'
   Plugin 'junegunn/goyo.vim'
   nnoremap <f4> :Goyo<cr>
-
-  " Cool if I coded more scala..
-  "Bundle 'derekwyatt/vim-scala'
+  nnoremap <leader>G :Goyo<cr>
+  " GOYO AND LIMELIGHT
+  " I might not like this after a while, but I'm giving it a shot.  These two
+  " plugins more or less go together
+  " Think 'hyperfocus'  :)
+  function! GoyoBefore()
+    Limelight
+  endfunction
+  function! GoyoAfter()
+    Limelight!
+  endfunction
+  let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
 
   " Zen coding - the original (one I installed.  Default key: ^Y,)
   Plugin 'mattn/emmet-vim'
 
-  " The tried-and-true file browser
+  " NERDTree - The tried-and-true file browser
   Plugin 'scrooloose/nerdtree'
+  " When opening NERDTree, put the cursor on the current file
+  noremap <F2> :NERDTreeFind<cr>
+  let NERDTreeDirArrows=1
+  let NERDTreeShowBookmarks=1
 
   " Streamlined commenting
   Plugin 'scrooloose/nerdcommenter'
@@ -108,6 +146,7 @@ call vundle#begin()
   " A different approach to file navigation.  This is kind of a game changer
   " for managing buffers
   Plugin 'kien/ctrlp.vim'
+
   " Make CtrlP rebuild its list next time
   nnoremap <f3> :CtrlPClearCache<cr>
   " Use CtrlP only on currently open buffers
@@ -116,14 +155,29 @@ call vundle#begin()
   " Some stuff requires vimproc..
   Plugin 'Shougo/vimproc'
 
-  " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   " Unite promises to be a replacement for CtrlP (and more).
   " Read more at http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/
-  " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   Plugin 'shougo/unite.vim'
 
-  " A better file browser?
-  "Bundle 'shougo/vimfiler.vim'
+  " Map commands for inside a unite window
+  function! s:unite_my_settings()"{{{
+      nmap <buffer> <C-j>     <Plug>(unite_toggle_auto_preview)
+      " Clear the cache
+      nmap <buffer> <C-r>     <Plug>(unite_redraw)
+
+      "}}}
+  endfunction
+  autocmd FileType unite call s:unite_my_settings()
+
+  " Browse buffers
+  nnoremap <leader>b :Unite buffer<cr>
+  " Browse files
+  nnoremap <leader>f :Unite file<cr>
+  " Either this doesn't work, or I don't understand it.. (psst.. try it again)
+  " let g:unite_source_history_yank_enable = 1
+  " nnoremap <leader>y :<C-u>Unite history/yank<CR>
+  nnoremap <leader>F :Unite -start-insert file_rec/async:!<cr>
+
 
   " Maybe *this* is a better file browser. (Really, a cleanup of netrw's
   " native interface.)  Key: -
@@ -158,99 +212,46 @@ call vundle#begin()
   " commands to change the context of the shown lines.
   Plugin 'embear/vim-foldsearch'
 
+  " SNIPPETS
   " The snippets engine
   Plugin 'SirVer/ultisnips'
-
   " The snippets themselves
   Plugin 'honza/vim-snippets'
+  let g:UltiSnipsExpandTrigger="<tab>"
+  let g:UltiSnipsJumpForwardTrigger="<c-b>"
+  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+  " Let snippets split the window?
+  let g:UltiSnipsEditSplit="vertical"
 
-" End plugin specifications
 call vundle#end()
 filetype plugin indent on
+" =========================
+" END Vundle
+" =========================
 
-"""""""""""""""""""
-" CONFIGURE PLUGINS
-"""""""""""""""""""
-if !exists('g:airline_symbols')
-let g:airline_symbols = {}
-" let g:airline_left_sep = ''
-" let g:airline_left_alt_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_right_alt_sep = ''
-" let g:airline_symbols.branch = ''
-" let g:airline_symbols.readonly = ''
-" let g:airline_symbols.linenr = ''
-"
-" let g:airline_left_sep = '»'
-" let g:airline_right_sep = '«'
-" let g:airline_symbols.linenr = '␤'
-" let g:airline_symbols.paste = 'ρ'
-" let g:airline_symbols.paste = 'Þ'
+" =====
+" FOR SOME REASON, THESE CALLS TO UNITE FUNCTIONS CANNOT GO INSIDE VUNDLE SETUP:
 
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-endif
-"'❭', '❬']
-"
-" Unite calls have to go here.  Something about having to call vundle#end
-" first?
-" call unite#filters#matcher_default#use(['matcher_fuzzy'])
-
-" Well, Unite is sure as hell configurable..
-" Act sorta like CtrlP
-
+" Set Unite to act sorta like CtrlP:
+" ( Alternative prompt char: »)
 call unite#custom#profile('default', 'context', {
 \   'winheight': 10,
 \   'direction': 'botright',
 \   'prompt': '❯ ',
 \ })
 
-" Other prompt options: »
+" Don't suggest certain file types to edit
 call unite#custom#source('file_rec,file_rec/async',
     \ 'ignore_pattern', '.*\.exe$\|.*\.dll\|.*\.so')
 
-" This tells Unite to ignore the same globs the rest of vim does
+" Tell Unite to ignore the same globs the rest of vim does
 call unite#custom#source('file_rec,file_rec/async', 'ignore_globs', split(&wildignore, ','))
+
 " let g:unite_ignore_source_files = ['*.dll']
-
-" Browse buffers
-nnoremap <leader>b :Unite buffer<cr>
-" Browse files
-nnoremap <leader>f :Unite file<cr>
-nnoremap <leader>F :Unite -start-insert file_rec/async:!<cr>
-
-" Either this doesn't work, or I don't understand it..
-" let g:unite_source_history_yank_enable = 1
-" nnoremap <leader>y :<C-u>Unite history/yank<CR>
-
-function! s:unite_my_settings()"{{{
-
-    nmap <buffer> <C-j>     <Plug>(unite_toggle_auto_preview)
-
-    " Clear the cache
-    nmap <buffer> <C-r>     <Plug>(unite_redraw)
-    "}}}
-endfunction
-" Map commands for inside a unite window
-autocmd FileType unite call s:unite_my_settings()
-
-" Snippets
-" ==========
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-    " Let snippets split the window?
-    let g:UltiSnipsEditSplit="vertical"
-
-let g:mapleader = ","
+" == END UNITE POST-VUNDLE CONFIG ===
 
 " Enable unicode (once)
-if &encoding !~ '^utf-8' 
+if &encoding !~ '^utf-8'
     set encoding=utf-8
 endif
 
@@ -409,97 +410,97 @@ vnoremap Y Ygv<Esc>
 nnoremap  h
 nnoremap  l
 
-"Leader mappings
 
-    " Go to most recently visited buffer
-    nnoremap <Leader><Space> 
+" ================
+" Leader mappings
+" ================
 
-    " Numbered buffers
-    nnoremap <Leader>1 :b1<cr>
-    nnoremap <Leader>2 :b2<cr>
-    nnoremap <Leader>3 :b3<cr>
-    nnoremap <Leader>4 :b4<cr>
-    nnoremap <Leader>5 :b5<cr>
-    nnoremap <Leader>6 :b6<cr>
-    nnoremap <Leader>7 :b7<cr>
-    nnoremap <Leader>8 :b8<cr>
-    nnoremap <Leader>9 :b9<cr>
+" Go to most recently visited buffer
+nnoremap <Leader><Space> 
 
-    " List buffers
-    nnoremap <Leader>l :ls<cr>
+" Numbered buffers
+nnoremap <Leader>1 :b1<cr>
+nnoremap <Leader>2 :b2<cr>
+nnoremap <Leader>3 :b3<cr>
+nnoremap <Leader>4 :b4<cr>
+nnoremap <Leader>5 :b5<cr>
+nnoremap <Leader>6 :b6<cr>
+nnoremap <Leader>7 :b7<cr>
+nnoremap <Leader>8 :b8<cr>
+nnoremap <Leader>9 :b9<cr>
 
-    " write file
-    nnoremap <Leader>w :w<cr>
+" List buffers
+nnoremap <Leader>l :ls<cr>
 
-    " drop buffer
-    nnoremap <Leader>d :bd<cr>
+" write file
+nnoremap <Leader>w :w<cr>
 
-    " quit easily
-    nnoremap <Leader>q :q<cr>
+" drop buffer
+nnoremap <Leader>d :bd<cr>
 
-    " reload vimrc files
-    " TODO: This doesn't actually check for a successful load
-    nnoremap <Leader>s :source $MYVIMRC<cr>:echo "vimrc reloaded (we hope)."<cr>
+" quit easily
+nnoremap <Leader>q :q<cr>
 
-    " Reload current file
-    nnoremap <Leader>e :e<cr>
+" reload vimrc files
+" TODO: Resourcing vimrc like this doesn't actually check for a successful load
+nnoremap <Leader>s :source $MYVIMRC<cr>:echo "vimrc reloaded (we hope)."<cr>
 
-    " Toggle line numbers
-    " Used by quickfix stuff.  This is easy enough to remember, so meh.
-    " nnoremap <leader>n :set number!<cr>
+" Reload current file
+nnoremap <Leader>e :e<cr>
 
-    " Insert a signature
-    nnoremap <Leader>@ oJon Carter<cr>borkabrak@gmail.com<Esc>
+" Insert a signature
+nnoremap <Leader>@ oJon Carter<cr>borkabrak@gmail.com<Esc>
 
-    " Insert a human-readable timestamp
-    nnoremap <Leader>t :r!date +"\%F \%r"<cr>
+" Insert a human-readable timestamp
+nnoremap <Leader>t :r!date +"\%F \%r"<cr>
 
-    " Insert just the date
-    nnoremap <Leader>D :r!date +"\%F"<cr>
+" Insert just the date
+nnoremap <Leader>D :r!date +"\%F"<cr>
 
-    " run the current file
-    nnoremap <Leader>r :!./%<cr>
+" run the current file
+nnoremap <Leader>r :!./%<cr>
 
-    " make current file executable
-    nnoremap <Leader>x :!chmod +x %<cr>
+" make current file executable
+nnoremap <Leader>x :!chmod +x %<cr>
 
-    " Underline the current line with various symbols.
-    "   * underline length matches the line above
-    "   * the new line is left in the anonymous register (so 'p' will put it again)
-    nnoremap <leader>= yypv$r=yy
-    nnoremap <leader>- yypv$r-yy
-    nnoremap <leader># yypv$r#yy
-    nnoremap <leader>" yypv$r"yy
-    nnoremap <leader>* yypv$r*yy
-    nnoremap <leader>U yypv$r━yy
+" Underline the current line with various symbols.
+" (Very handy for, e.g. Markdown )
+"   * underline length matches the line above
+"   * the new line is left in the anonymous register (so 'p' will put it again)
+nnoremap <leader>= yypv$r=yy
+nnoremap <leader>- yypv$r-yy
+nnoremap <leader># yypv$r#yy
+nnoremap <leader>" yypv$r"yy
+nnoremap <leader>* yypv$r*yy
+nnoremap <leader>U yypv$r━yy
 
-    " 'Save as':
-    "   Write to a filename (prompted for) and switch to it.
-    nnoremap <leader>S :sav
+" 'Save as':
+"   Write to a filename (prompted for) and switch to it.
+nnoremap <leader>S :sav
 
-    " Paste from system clipboard
-    nnoremap <leader>i :set paste<cr>"*p:set nopaste<cr>
+" Paste from system clipboard
+nnoremap <leader>i :set paste<cr>"*p:set nopaste<cr>
 
-    " Select what was just pasted
-    nnoremap gp `[v`]
+" Select what was just pasted
+nnoremap gp `[v`]
 
-    " 'gf' normally opens the file under the cursor.  This makes is so it
-    " also creates it if it doesn't exist
-    nnoremap gf :e <cfile><cr>
+" 'gf' normally opens the file under the cursor.  This makes is so it
+" also creates it if it doesn't exist
+nnoremap gf :e <cfile><cr>
 
-    " Edit .vimrc
-    nnoremap <leader>v :e $MYVIMRC<cr>
+" Edit .vimrc
+nnoremap <leader>v :e $MYVIMRC<cr>
 
-    " Format highlighted text into nice columns
-    vnoremap  :!column -t<cr>
+" Format highlighted text into nice columns
+vnoremap  :!column -t<cr>
 
-    " Search for selected text (backwards and forwards)
-    vnoremap <silent>* y/0<cr>
-    vnoremap <silent># y?0<cr>
+" Search for selected text (backwards and forwards)
+vnoremap <silent>* y/0<cr>
+vnoremap <silent># y?0<cr>
 
-    " Open the link under the cursor in an external browser (w3m - console
-    " based)
-    nnoremap <leader>W :!x-www-browser <cfile><cr>
+" Open the link under the cursor in an external browser (w3m - console
+" based)
+nnoremap <leader>W :!x-www-browser <cfile><cr>
 
 syntax enable
 
@@ -510,9 +511,8 @@ runtime! macros/matchit.vim
 " Read man pages within vim (<leader>K)
 runtime! ftplugin/man.vim
 
-" Hard mode (disable character-wise navigation to train yourself to use the more efficient motion commands)
-" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
+" ==============================================================================
 " AUTOCOMMANDS:
 " ==============================================================================
 " Set the textwidth for text files
@@ -532,23 +532,6 @@ set nohlsearch
 " set nobackup
 " set nowritebackup
 
-" Set digraphs -- two-character mnemonics for characters that are otherwise
-" difficult to type (i.e., you need to use Ctrl-Shift-U and know the hex
-" code.) With a digraph, just hit ^K in insert mode, and type the
-" two-character abbreviation
-" dig CH 10003 " ✓ - check mark (This is actually on the digraph 'OK')
-
-" GOYO AND LIMELIGHT
-" I might not like this after a while, but I'm giving it a shot.  These two
-" plugins more or less go together
-" Think 'hyperfocus'  :)
-function! GoyoBefore()
-  Limelight
-endfunction
-function! GoyoAfter()
-  Limelight!
-endfunction
-
 " Highlight trailing whitespace as an error (:help match, matchadd,
 " matchdelete for finer control here)
 match ErrorMsg '\s\+$'
@@ -561,19 +544,6 @@ endfunction
 function! RemoveTrailingWhitespaceConfirm()
     %s/\s\+$//ce
 endfunction
-
-"================================================================
-" Project-wide grep, with results managed in the quickfix window
-" (Make sure you're in the top dir when you do this)
-"================================================================
-
-    " For performance reasons, let's have some filetype-specific funcs
-    function! ProjectGrepPHP(pattern)
-        echom "Grepping for "
-        echom a:pattern
-        echom ".."
-        vimgrep a:pattern **/*.php | copen 5
-    endfunction
 
 " :Sudosave will write the file using sudo, if user is a sudoer
 command! Sudosave write !sudo tee % > /dev/null
@@ -592,29 +562,6 @@ nnoremap <leader>h :set hlsearch!<cr>
 nnoremap <leader>rtw :call RemoveTrailingWhitespace()<cr>
 nnoremap <leader>rtW :call RemoveTrailingWhitespaceConfirm()<cr>
 
-let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
-nnoremap <leader>G :Goyo<cr>
-
-" PLUGIN CONFIG FILES
-" Netrw
-" source ~/.vim/netrw.rc
-
-" NERDTree
-noremap <F2> :NERDTreeFind<cr>
-" Open NERDTree, putting the cursor on the current file
-let NERDTreeDirArrows=1
-let NERDTreeShowBookmarks=1
-
-" Respond to the mouse
-set mouse=a
-
-" Have commands run from :! use shell aliases
-" Disabled because it messes up nvim's :terminal command
-"set shell=/usr/bin/env\ zsh\ -l
-
-" AHA-specific settings (Don't need this for home)
-" source ~/.vim/aha.vim
-
 " javascript help (NOTE: 'cl' conflicts with a mapping in nerdcommenter)
 nnoremap <leader>cL oconsole.log("");<esc>hhi
 
@@ -624,7 +571,7 @@ nnoremap <leader>Qp mt{gq}'t
 " Ctrl-C copies to system clipboard
 vnoremap  "+y:let @*=@+<cr>:echo "Selection copied to system clipboard"<cr>
 
-" Change the cursor to better indicate mode
+" Cursor attributes to better indicate the active editing mode
 if &term =~ '^xterm-256color'
 
     " CURSOR SHAPE LEGEND
@@ -645,8 +592,27 @@ if &term =~ '^xterm-256color'
 
 endif
 
+" Respond to the mouse
+set mouse=a
+
 " Digraphs - shortcuts for non-ASCII characters
 "   (Use ^k from insert mode, then type the first pair of characters to output
 "   the unicode character with the decimal representation that follows.
-
 dig :) 9786
+
+" AHA-specific settings (Don't need this for home)
+" source ~/.vim/aha.vim
+
+"================================================================
+" NOTE: This is still a bit experimental
+" Project-wide grep, with results managed in the quickfix window
+" (Make sure you're in the top dir when you do this)
+" For performance reasons, let's have some filetype-specific funcs
+function! ProjectGrepPHP(pattern)
+    echom "Grepping for "
+    echom a:pattern
+    echom ".."
+    vimgrep a:pattern **/*.php | copen 5
+endfunction
+"================================================================
+
