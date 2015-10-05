@@ -25,3 +25,9 @@ function! ProjectGrepPHP(pattern)
     vimgrep a:pattern **/*.php | copen 5
 endfunction
 "================================================================
+
+" Read the file aloud
+function! Read()
+    call system("espeak -v f2 -s 140 -p 40 -f", expand(%))
+endfunction
+
