@@ -1,20 +1,26 @@
-"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"===============================================================================
 " VUNDLE - package manager for Vim plugins
 "
 "   Register and configure plugins here
 "
-"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"
 " USEFUL VUNDLE COMMANDS:
 "   :PluginList          - list configured plugins
 "   :PluginInstall(!)    - install (update) plugins
 "   :PluginSearch(!) foo - search (or refresh cache first) for foo
 "   :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
 " see :help vundle for more details or wiki for FAQ
+"===============================================================================
+
 filetype off
 set rtp+=~/.vim/bundle/vundle.vim
 call vundle#begin()
   " Vundle itself
   Plugin 'gmarik/vundle.vim'
+
+  " Some stuff requires vimproc..
+  " Let's put it near the beginning.
+  Plugin 'Shougo/vimproc'
 
   " vim-misc is required for vim-notes
   Plugin 'xolox/vim-misc'
@@ -113,32 +119,9 @@ call vundle#begin()
   " Use CtrlP only on currently open buffers
   nnoremap <leader><C-P> :CtrlPBuffer<cr>
 
-  " Some stuff requires vimproc..
-  Plugin 'Shougo/vimproc'
-
   " Unite promises to be a replacement for CtrlP (and more).
   " Read more at http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/
   Plugin 'shougo/unite.vim'
-
-  " Map commands for inside a unite window
-  function! s:unite_my_settings()"{{{
-      nmap <buffer> <C-j>     <Plug>(unite_toggle_auto_preview)
-      " Clear the cache
-      nmap <buffer> <C-r>     <Plug>(unite_redraw)
-
-      "}}}
-  endfunction
-  autocmd FileType unite call s:unite_my_settings()
-
-  " Browse buffers
-  nnoremap <leader>b :Unite buffer<cr>
-  " Browse files
-  nnoremap <leader>f :Unite file<cr>
-  " Either this doesn't work, or I don't understand it.. (psst.. try it again)
-  " let g:unite_source_history_yank_enable = 1
-  " nnoremap <leader>y :<C-u>Unite history/yank<CR>
-  nnoremap <leader>F :Unite -start-insert file_rec/async:!<cr>
-
 
   " Maybe *this* is a better file browser. (Really, a cleanup of netrw's
   " native interface.)  Key: -
@@ -187,9 +170,28 @@ call vundle#begin()
 call vundle#end()
 filetype plugin indent on
 
-" =====
-" FOR SOME REASON, THESE CALLS TO UNITE FUNCTIONS CANNOT GO INSIDE VUNDLE SETUP:
-" THIS IS MESSY AND LESS THAN IDEAL, BUT WORKS FOR NOW.
+" =========================================================================
+" FOR SOME REASON, THESE CALLS TO UNITE FUNCTIONS CANNOT GO INSIDE VUNDLE
+" SETUP begin/end block: THIS IS MESSY AND LESS THAN IDEAL, BUT WORKS FOR NOW.
+
+" Map commands for inside a unite window
+function! s:unite_my_settings()"{{{
+    nmap <buffer> <C-j>     <Plug>(unite_toggle_auto_preview)
+    " Clear the cache
+    nmap <buffer> <C-r>     <Plug>(unite_redraw)
+
+    "}}}
+endfunction
+autocmd FileType unite call s:unite_my_settings()
+
+" Browse buffers
+nnoremap <leader>b :Unite buffer<cr>
+" Browse files
+nnoremap <leader>f :Unite file<cr>
+" Either this doesn't work, or I don't understand it.. (psst.. try it again)
+" let g:unite_source_history_yank_enable = 1
+" nnoremap <leader>y :<C-u>Unite history/yank<CR>
+nnoremap <leader>F :Unite -start-insert file_rec/async:!<cr>
 
 " Set Unite to act sorta like CtrlP:
 " ( Alternative prompt char: »)
@@ -207,5 +209,4 @@ call unite#custom#source('file_rec,file_rec/async',
 call unite#custom#source('file_rec,file_rec/async', 'ignore_globs', split(&wildignore, ','))
 
 " let g:unite_ignore_source_files = ['*.dll']
-" == END UNITE POST-VUNDLE CONFIG ===
-
+" =========================================================================
