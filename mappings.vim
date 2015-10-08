@@ -180,5 +180,5 @@ nnoremap <leader>cL oconsole.log("");<esc>hhi
 nnoremap <leader>Qp mt{gq}'t
 
 " Ctrl-C copies to system clipboard
-vnoremap  "+y:let @*=@+<cr>:echo "Selection copied to system clipboard"<cr>
+vnoremap  "+y:let @*=@+<cr>:echom "Selection copied to system clipboard"<cr>
 
