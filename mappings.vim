@@ -180,9 +180,6 @@ nnoremap <leader>p :cprev<cr>
 " Toggle highlighting searches
 nnoremap <leader>h :set hlsearch!<cr>
 
-nnoremap <leader>rtw :call RemoveTrailingWhitespace()<cr>
-nnoremap <leader>rtW :call RemoveTrailingWhitespaceConfirm()<cr>
-
 " javascript help (NOTE: 'cl' conflicts with a mapping in nerdcommenter)
 nnoremap <leader>cL oconsole.log("");<esc>hhi
 
