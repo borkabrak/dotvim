@@ -41,6 +41,12 @@
 " still works under regular vim.)
 set nocompatible
 
+" 'mapleader' can be used as a prefix to all sorts of user-defined keymappings
+" by referring to it as <leader>, allowing us to change the prefix of all
+" those mappings very easily just by changing it here.
+let g:mapleader = ","
+
+" Enable syntax highlighting
 syntax enable
 
 " ========================================================================

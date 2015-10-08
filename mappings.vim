@@ -1,10 +1,3 @@
-" =======================================================================
-" NOTE: Set mapleader BEFORE using it in mappings.
-" You wouldn't think this needs to be said, but it's already bitten me.
-" Twice.  :-D
-" =======================================================================
-let g:mapleader = ","
-
 " Easier than flailing away at the <ESC> key all day..
 " (later jon says you can also try Alt-E or ^[)
 inoremap jj <ESC>
