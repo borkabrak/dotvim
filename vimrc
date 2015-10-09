@@ -15,22 +15,11 @@
 "
 " * Check out tpope's plugins 'sensible' and 'sleuth'
 "
-" GENERAL TIPS:
-" ======================================================================
-"   :earlier and :later walk through changes to the buffer with respect
-"   to time.
-"
-"   gd - goto the DECLARATION of the variable under the cursor
-"
-"   gv - reselects most recent visual selection
-"
-"   gi - return to most recent insert mode location
+" * :command :E
+"     Open a file like :edit <file>.  If it doesn't exist, create it,
+"     including the directory path down to it.
+"---------------------------------------------------------------------
 
-"   ga - show ASCII value of character under cursor (cf. g8) 
-"        (behavior amended by tpope's 'characterize' plugin)
-"
-"   gD - go to definition of word under the cursor
-" ======================================================================
 
 " Do NOT try to emulate vi.
 set nocompatible
@@ -38,6 +27,7 @@ set nocompatible
 " 'mapleader' can be used as a prefix to all sorts of user-defined keymappings
 " by referring to it as <leader>, allowing us to change the prefix of all
 " those mappings very easily just by changing it here.
+
 let g:mapleader = ","
 
 " Enable syntax highlighting
@@ -45,49 +35,55 @@ syntax enable
 
 " ========================================================================
 " CONFIGURATION OPTIONS
-  source ~/.vim/options.vim
+  runtime! options.vim
 " ========================================================================
 
 " ========================================================================
 " KEY MAPPINGS
-  source ~/.vim/mappings.vim
+  runtime! mappings.vim
 " ========================================================================
 
 " ========================================================================
 " FUNCTION DEFINITIONS
-  source ~/.vim/functions.vim
+  runtime! functions.vim
 " ========================================================================
 "
 " ========================================================================
 " VUNDLE PLUGIN MANAGEMENT
-  source ~/.vim/vundlerc.vim
+  runtime! vundlerc.vim
 " ========================================================================
 
+" ========================================================================
+" Load AHA-specific settings if they exist
+  runtime! aha.vim
+" ========================================================================
+
+" ========================================================================
+" Match more than just braces (e.g. html tags.  Yup.)
+  runtime! macros/matchit.vim
+" ========================================================================
+
+" ========================================================================
+" Read man pages within vim (<leader>K)
+  runtime! ftplugin/man.vim
+" ========================================================================
+
+" ========================================================================
 " Include colorscheme setting separately, so it can be ignored by git and thus
 " independent of setup instantiation.
-source ~/.vim/colorscheme.vim
+  runtime colorscheme.vim
+" ========================================================================
 
-runtime! macros/matchit.vim
-
-" Read man pages within vim (<leader>K)
-runtime! ftplugin/man.vim
-
-" ==============================================================================
+" ========================================================================
 " AUTOCOMMANDS:
-" ==============================================================================
-" Set the textwidth for text files
-autocmd FileType text setlocal textwidth=78
-
-" textwidth for markdown files
-autocmd FileType markdown setlocal textwidth=78
-
+" ========================================================================
 " Save vim state info on shutdown
 autocmd VimLeave * mksession! ~/.vim/shutdown_session.vim
 
-" Do not create a bunch of backup files ending in tilde. (Is this a
-" Windows-specific thing?)
-" set nobackup
-" set nowritebackup
+" Show relative line numbers (useful for counts to commands, for example),
+" but keep absolute numbers when in insert mode.
+autocmd InsertEnter * set norelativenumber
+autocmd InsertLeave * set relativenumber
 
 " Highlight trailing whitespace as an error (:help match, matchadd,
 " matchdelete for finer control here)
@@ -130,11 +126,4 @@ endif
 "   (Use ^k from insert mode, then type the first pair of characters to output
 "   the unicode character with the decimal representation that follows.
 dig :) 9786
-
-" AHA-specific settings
-"
-" This is dependent on the environment (work/home), so we run just the first
-" file by this name anywhere in 'runtimepath', without generating an error if
-" the file doesn't exist.  (Increment 'verbose' to see a message in that case)
-runtime aha.vim
 

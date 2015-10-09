@@ -167,6 +167,11 @@ call vundle#begin()
   " Let snippets split the window?
   let g:UltiSnipsEditSplit="vertical"
 
+  " Provide ':AnsiEsc', to toggle display/interpretation of ANSI control characters (colors, mostly)
+  "
+  "     Try running it on its own help page.
+  Plugin 'ponzellus/AnsiEsc'
+
 call vundle#end()
 filetype plugin indent on
 
