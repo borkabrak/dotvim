@@ -41,27 +41,27 @@ call vundle#begin()
 
   " Trying out a different status line..
   Plugin 'bling/vim-airline'
-  if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-  " let g:airline_left_sep = ''
-  " let g:airline_left_alt_sep = ''
-  " let g:airline_right_sep = ''
-  " let g:airline_right_alt_sep = ''
-  " let g:airline_symbols.branch = ''
-  " let g:airline_symbols.readonly = ''
-  " let g:airline_symbols.linenr = ''
-  " let g:airline_left_sep = '»'
-  " let g:airline_right_sep = '«'
-  " let g:airline_symbols.linenr = '␤'
-  " let g:airline_symbols.paste = 'ρ'
-  " let g:airline_symbols.paste = 'Þ'
-  let g:airline_left_sep = '▶'
-  let g:airline_right_sep = '◀'
-  let g:airline_symbols.linenr = '¶'
-  let g:airline_symbols.branch = '⎇'
-  let g:airline_symbols.paste = '∥'
-  let g:airline_symbols.whitespace = 'Ξ'
-  endif
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+        " let g:airline_left_sep = ''
+        " let g:airline_left_alt_sep = ''
+        " let g:airline_right_sep = ''
+        " let g:airline_right_alt_sep = ''
+        " let g:airline_symbols.branch = ''
+        " let g:airline_symbols.readonly = ''
+        " let g:airline_symbols.linenr = ''
+        " let g:airline_left_sep = '»'
+        " let g:airline_right_sep = '«'
+        " let g:airline_symbols.linenr = '␤'
+        " let g:airline_symbols.paste = 'ρ'
+        " let g:airline_symbols.paste = 'Þ'
+        let g:airline_left_sep = '▶'
+        let g:airline_right_sep = '◀'
+        let g:airline_symbols.linenr = '¶'
+        let g:airline_symbols.branch = '⎇'
+        let g:airline_symbols.paste = '∥'
+        let g:airline_symbols.whitespace = 'Ξ'
+    endif
 
   " Sorta like vimium's helptags when browsing, but this is for moving around
   " in the file.  Key: <leader><leader>w
@@ -70,8 +70,12 @@ call vundle#begin()
   " Have tags without thinking about them
   "Bundle 'xolox/vim-easytags'
 
-  " Git interface.. don't really use it yet
+  " Git commands from within vim
   Plugin 'tpope/vim-fugitive'
+    " Use git to recursively find the word under the cursor everywhere in the
+    " current directory, piping the results to the quickfix list
+    " TODO: Some form of this that lets me type in the search target
+    nnoremap <leader>G :silent Ggrep <cword> \| copen<cr>
 
   " Surround is kind of awesome for quotes and whatnot
   Plugin 'tpope/vim-surround'
@@ -80,29 +84,28 @@ call vundle#begin()
   Plugin 'junegunn/limelight.vim'
   let g:limelight_conceal_ctermfg = 'gray'
   Plugin 'junegunn/goyo.vim'
-  nnoremap <f4> :Goyo<cr>
-  nnoremap <leader>G :Goyo<cr>
-  " GOYO AND LIMELIGHT
-  " I might not like this after a while, but I'm giving it a shot.  These two
-  " plugins more or less go together
-  " Think 'hyperfocus'  :)
-  function! GoyoBefore()
-    Limelight
-  endfunction
-  function! GoyoAfter()
-    Limelight!
-  endfunction
-  let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
+    nnoremap <f4> :Goyo<cr>
+    " GOYO AND LIMELIGHT
+    " I might not like this after a while, but I'm giving it a shot.  These two
+    " plugins more or less go together
+    " Think 'hyperfocus'  :)
+    function! GoyoBefore()
+        Limelight
+    endfunction
+    function! GoyoAfter()
+        Limelight!
+    endfunction
+    let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
 
   " Zen coding - the original (one I installed.  Default key: ^Y,)
   Plugin 'mattn/emmet-vim'
 
   " NERDTree - The tried-and-true file browser
   Plugin 'scrooloose/nerdtree'
-  " When opening NERDTree, put the cursor on the current file
-  noremap <F2> :NERDTreeFind<cr>
-  let NERDTreeDirArrows=1
-  let NERDTreeShowBookmarks=1
+    " When opening NERDTree, put the cursor on the current file
+    noremap <F2> :NERDTreeFind<cr>
+    let NERDTreeDirArrows=1
+    let NERDTreeShowBookmarks=1
 
   " Streamlined commenting
   Plugin 'scrooloose/nerdcommenter'
@@ -113,11 +116,10 @@ call vundle#begin()
   " A different approach to file navigation.  This is kind of a game changer
   " for managing buffers
   Plugin 'kien/ctrlp.vim'
-
-  " Make CtrlP rebuild its list next time
-  nnoremap <f3> :CtrlPClearCache<cr>
-  " Use CtrlP only on currently open buffers
-  nnoremap <leader><C-P> :CtrlPBuffer<cr>
+    " Make CtrlP rebuild its list next time
+    nnoremap <f3> :CtrlPClearCache<cr>
+    " Use CtrlP only on currently open buffers
+    nnoremap <leader><C-P> :CtrlPBuffer<cr>
 
   " Unite promises to be a replacement for CtrlP (and more).
   " Read more at http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/
@@ -161,11 +163,11 @@ call vundle#begin()
   Plugin 'SirVer/ultisnips'
   " The snippets themselves
   Plugin 'honza/vim-snippets'
-  let g:UltiSnipsExpandTrigger="<tab>"
-  let g:UltiSnipsJumpForwardTrigger="<c-b>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-  " Let snippets split the window?
-  let g:UltiSnipsEditSplit="vertical"
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    " Let snippets split the window?
+    let g:UltiSnipsEditSplit="vertical"
 
   " Provide ':AnsiEsc', to toggle display/interpretation of ANSI control characters (colors, mostly)
   "
