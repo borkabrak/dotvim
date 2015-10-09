@@ -1,10 +1,3 @@
-" =======================================================================
-" NOTE: Set mapleader BEFORE using it in mappings.
-" You wouldn't think this needs to be said, but it's already bitten me.
-" Twice.  :-D
-" =======================================================================
-let g:mapleader = ","
-
 " Easier than flailing away at the <ESC> key all day..
 " (later jon says you can also try Alt-E or ^[)
 inoremap jj <ESC>
@@ -180,9 +173,6 @@ nnoremap <leader>p :cprev<cr>
 " Toggle highlighting searches
 nnoremap <leader>h :set hlsearch!<cr>
 
-nnoremap <leader>rtw :call RemoveTrailingWhitespace()<cr>
-nnoremap <leader>rtW :call RemoveTrailingWhitespaceConfirm()<cr>
-
 " javascript help (NOTE: 'cl' conflicts with a mapping in nerdcommenter)
 nnoremap <leader>cL oconsole.log("");<esc>hhi
 
@@ -190,5 +180,5 @@ nnoremap <leader>cL oconsole.log("");<esc>hhi
 nnoremap <leader>Qp mt{gq}'t
 
 " Ctrl-C copies to system clipboard
-vnoremap  "+y:let @*=@+<cr>:echo "Selection copied to system clipboard"<cr>
+vnoremap  "+y:let @*=@+<cr>:echom "Selection copied to system clipboard"<cr>
 

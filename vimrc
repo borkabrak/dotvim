@@ -9,9 +9,6 @@
 " * Resourcing vimrc as implemented here (<leader>s) doesn't actually check
 "   for a successful load
 "
-" * Detect ENV and load AHA-specific settings dynamically
-"       - Although, there's nothing in it I really miss yet..
-"
 "   FEATURES:
 "   -------------
 " * Consider converting from Vundle to VimPlug
@@ -35,21 +32,24 @@
 "   gD - go to definition of word under the cursor
 " ======================================================================
 
-" Use Vim settings, rather than Vi settings (much better!).  This must be
-" first, because it changes other options as a side effect.
-" (Neovim doesn't require this, but I'm leaving it here so this vimrc setup
-" still works under regular vim.)
+" Do NOT try to emulate vi.
 set nocompatible
 
+" 'mapleader' can be used as a prefix to all sorts of user-defined keymappings
+" by referring to it as <leader>, allowing us to change the prefix of all
+" those mappings very easily just by changing it here.
+let g:mapleader = ","
+
+" Enable syntax highlighting
 syntax enable
 
 " ========================================================================
-" OPTIONS
+" CONFIGURATION OPTIONS
   source ~/.vim/options.vim
 " ========================================================================
 
 " ========================================================================
-" MAPPINGS:
+" KEY MAPPINGS
   source ~/.vim/mappings.vim
 " ========================================================================
 
@@ -94,10 +94,11 @@ autocmd VimLeave * mksession! ~/.vim/shutdown_session.vim
 match ErrorMsg '\s\+$'
 
 " ==============================================================================
-" COMMANDS AND ALIASES (abbreviations)
+" COMMANDS AND ABBREVIATIONS
 " Similar to mappings, but more similar to shell aliases
 
-" :Sudosave will write the file using sudo, if user is a sudoer
+" :Sudosave - for when you realize you SHOULD have opened that file with
+"             escalated privileges.
 command! Sudosave write !sudo tee % > /dev/null
 
 " :W is an alias for :Sudosave
@@ -130,6 +131,10 @@ endif
 "   the unicode character with the decimal representation that follows.
 dig :) 9786
 
-" AHA-specific settings (Don't need this for home)
-" source ~/.vim/aha.vim
+" AHA-specific settings
+"
+" This is dependent on the environment (work/home), so we run just the first
+" file by this name anywhere in 'runtimepath', without generating an error if
+" the file doesn't exist.  (Increment 'verbose' to see a message in that case)
+runtime aha.vim
 
