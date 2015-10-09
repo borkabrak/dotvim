@@ -44,3 +44,7 @@ function! ProjectGrepPHP(pattern)
 endfunction
 "================================================================
 
+" Read the file aloud
+function! Read()
+    call system("espeak -v f2 -s 140 -p 40 -f", expand(%))
+endfunction
