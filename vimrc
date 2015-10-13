@@ -13,7 +13,7 @@
 "   -------------
 " * Consider converting from Vundle to VimPlug
 "
-" * Check out tpope's plugins 'sensible' and 'sleuth'
+" * Check out tpope's plugins 'sensible'
 "
 " * :command :[E]dit
 "     Open a file like :edit <file>.  If it doesn't exist, create it,

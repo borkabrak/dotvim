@@ -144,6 +144,10 @@ call vundle#begin()
   " through the quickfix list. )
   Plugin 'tpope/vim-unimpaired'
 
+  " Heuristically set shiftwidth and expandtab for each buffer loaded based on
+  " its contents.
+  Plugin 'tpope/vim-sleuth'
+
   " Laravel's Blade syntax
   Plugin 'xsbeats/vim-blade'
 

@@ -20,14 +20,8 @@ set t_Co=256
 " as *looking* at another buffer)
 set hidden
 
-" Indent/outdent n spaces
-set shiftwidth=4
-
 " Tabs are n spaces
 set tabstop=4
-
-" Tabs are *spaces*, instead of tab character
-set expandtab
 
 " How to show tab characters when `:set list` is used
 set listchars+=tab:]-,trail:•,extends:❯,precedes:❮
