@@ -8,8 +8,10 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Enable unicode
-set encoding=utf-8
+" Enable unicode (once)
+if &encoding !~ '^utf-8'
+    set encoding=utf-8
+endif
 
 " Use 256 colors
 set t_Co=256
