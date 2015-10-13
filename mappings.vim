@@ -27,12 +27,11 @@ noremap <F7> :source ~/.vim/shutdown_session.vim<CR>
 nnoremap ` '
 nnoremap ' `
 
-" Also switch ':' and ';' (command mode and next 'f')
-" (This'll take a little getting used to.  Maybe don't remap the real colon until I do.)
+" Switch ':' (command mode) and ';' (next 'f/t')
 nnoremap ; :
 nnoremap : ;
-
-" Switch colon and semi-colon for visual mode
+" Also for visual mode (I can't seem to combine normal and visual mode
+" mappings) 
 vnoremap ; :
 vnoremap : ;
 

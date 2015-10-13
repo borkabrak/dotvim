@@ -8,7 +8,7 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Enable unicode (once)
+" Enable unicode.  Check first, as re-enabling causes issues when reloading.
 if &encoding !~ '^utf-8'
     set encoding=utf-8
 endif
@@ -92,8 +92,10 @@ set viminfo+=%
 " Abbreviate various messages
 set shortmess=atToOs
 
-" show line numbers
+" show line numbers - setting both 'number' and 'relativenumber' puts us in a
+" sort of mixed mode, where relative numbers are used.
 set number
+set relativenumber
 
 " do not highlight search matches
 set nohlsearch
