@@ -181,3 +181,5 @@ nnoremap <leader>Qp mt{gq}'t
 " Ctrl-C copies to system clipboard
 vnoremap  "+y:let @*=@+<cr>:echom "Selection copied to system clipboard"<cr>
 
+" Search only within selection (de-selects text in the process)
+vnoremap // <Esc>/\%V
