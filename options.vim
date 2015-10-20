@@ -22,6 +22,8 @@ set hidden
 
 " Tabs are n spaces
 set tabstop=4
+set expandtab
+set shiftwidth=4
 
 " How to show tab characters when `:set list` is used
 set listchars+=tab:]-,trail:•,extends:❯,precedes:❮
