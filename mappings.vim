@@ -1,3 +1,10 @@
+" KEY MAPPINGS
+"
+"   I'm still debating whether mappings to functionality provided by a plugin
+"   belongs here, or near the inclusion of the plugin (currently in vundlerc).
+"   Right now, it's the latter.
+" ==============
+
 " Easier than flailing away at the <ESC> key all day..
 " (later jon says you can also try Alt-E or ^[)
 inoremap jj <ESC>

@@ -11,7 +11,29 @@
 "
 "   FEATURES:
 "   -------------
-" * Consider converting from Vundle to VimPlug
+" * Figure out how to automate this the rest of the way:
+"
+"     How to fold all functions in a file:
+"
+"       /^\s*\(public\|private\)\?\s*function<cr>/{<cr>zf%j@f
+"
+"     - Yank that into the f register (might have to replace the <cr>s with
+"     their literals,
+"     - :set nowrapscan
+"     - run "f as a macro (@f)"
+"     - Put wrapscan back to where it was
+"
+"
+" * Mapping to go to the beginning of the closest enclosing function - If this
+"     line *is* the first line of a function definition, go to where it's called
+"     (first within the file, ultimately within a directory - assume identical
+"     file type?).  This way, we could build a stack trace all the way up to the
+"     original invocation, which could be damn useful.
+"
+" * How many times does <x> appear in the current file?  On how many lines?
+"
+" TODO: Define a command that does project-wide search, limitable by filetype,
+" and allow entering an arbitrary search string.  (cf. /Ggrep in this file)
 "
 " * Check out tpope's plugins 'sensible'
 "

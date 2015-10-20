@@ -74,7 +74,6 @@ call vundle#begin()
   Plugin 'tpope/vim-fugitive'
     " Use git to recursively find the word under the cursor everywhere in the
     " current directory, piping the results to the quickfix list
-    " TODO: Some form of this that lets me type in the search target
     nnoremap <leader>G :silent Ggrep <cword> \| copen<cr>
 
   " Surround is kind of awesome for quotes and whatnot
