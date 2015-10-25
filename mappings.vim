@@ -78,7 +78,6 @@ vnoremap Y Ygv<Esc>
 nnoremap  h
 nnoremap  l
 
-
 " ================
 " Leader mappings
 " ================
@@ -155,6 +154,9 @@ nnoremap gp `[v`]
 " 'gf' normally opens the file under the cursor.  This makes is so it
 " also creates it if it doesn't exist
 nnoremap gf :e <cfile><cr>
+" The enter key, in normal mode, opens the file under the cursor only if it
+" exists
+nnoremap <cr> gf
 
 " Edit .vimrc
 nnoremap <leader>v :e $MYVIMRC<cr>

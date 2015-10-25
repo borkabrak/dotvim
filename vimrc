@@ -23,7 +23,6 @@
 "     - run "f as a macro (@f)"
 "     - Put wrapscan back to where it was
 "
-"
 " * Mapping to go to the beginning of the closest enclosing function - If this
 "     line *is* the first line of a function definition, go to where it's called
 "     (first within the file, ultimately within a directory - assume identical
@@ -91,7 +90,6 @@ let g:mapleader = ","
 " independent of setup instantiation.
 " ------------------------------------------------------------------------
   runtime colorscheme.vim
-
 
 " ========================================================================
 " AUTOCOMMANDS:
