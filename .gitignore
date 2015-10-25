@@ -4,6 +4,10 @@ swap
 tmp
 shutdown_session.vim
 
+# SHADA stand for SHAred DAta, and is sort of like a session file, but only for
+# nvim.  :help shada to read more.
+shada
+
 # Vundle-managed software takes care of itself
 #
 #   Because of how vundle works, these are each inidividual git repositories
