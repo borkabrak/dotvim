@@ -1,0 +1,2 @@
+" Quickfix window
+set cursorline
