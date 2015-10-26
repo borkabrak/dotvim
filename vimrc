@@ -11,6 +11,9 @@
 "
 "   FEATURES:
 "   -------------
+"
+" * Diff between current buffer and its file on disk
+"
 " * Figure out how to automate this the rest of the way:
 "
 "     How to fold all functions in a file:
@@ -147,3 +150,39 @@ endif
 "   (Use ^k from insert mode, then type the first pair of characters to output
 "   the unicode character with the decimal representation that follows.
 dig :) 9786
+
+
+" TODO: Get this to work
+function! FoldFunctions()
+
+    "We'll write to a register, so preserve it's contents in the temp register
+    let @"=@f
+
+    "Also preserve the cursor position
+    mx
+
+    "Load the macro that actually does the folding
+    "let @f='/^\s*\(public\|private\)\?\s*function<cr>/{<cr>zf%j@f'
+    let @f='/^[^\/]*function.*{/{zf%j@f'
+
+    " Searches stop at EOF
+    set nowrapscan
+
+    " How to go to top of buffer and execute the macro?
+    " ???
+
+    " Restore the original value of the register we overwrote
+    let @f=@"
+
+    " Restore original value of wrapscan (for now, just activate it)
+    set wrapscan
+
+    " Restore cursor position
+    `x
+
+endfunction
+
+" For now, just load a macro in this register for use until I get the function
+" working.
+let @f='/^[^\/]*function.*{/{zf%j@f'
+
