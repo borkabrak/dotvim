@@ -4,3 +4,8 @@ nnoremap <leader>dd mxlF$veyodd(");<Esc>`x
 
 " Same, but just print_r
 nnoremap <leader>dp mxlF$veyoprint_r(");<Esc>`x
+
+" Code Folding
+syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+setlocal foldmethod=syntax
+setlocal foldlevel=99
