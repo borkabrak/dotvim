@@ -39,3 +39,7 @@ function! OpenPartial()
 endfunction
 
 noremap <leader>Lgf :call OpenPartial()<cr>
+
+" Set vim's current directory to the local BIQ repository root
+nnoremap <leader>cdb :cd /cygdrive/c/Users/jcarter/biq<cr>
+nmap <leader>B <leader>cdb 
