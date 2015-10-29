@@ -11,6 +11,9 @@
 "
 "   FEATURES:
 "   -------------
+" * When you leave a window and come back, visual selections are not
+"   preserved.  Could this be done, though, with BufEnter/Leave autocommands?
+"
 " * Figure out how to automate this the rest of the way:
 "
 "     How to fold all functions in a file:
