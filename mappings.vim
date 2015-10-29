@@ -38,14 +38,9 @@ nnoremap ' `
 nnoremap ; :
 nnoremap : ;
 " Also for visual mode (I can't seem to combine normal and visual mode
-" mappings) 
+" mappings)
 vnoremap ; :
 vnoremap : ;
-
-" Easier to follow links (e.g., in help files) and go back
-"   This just ended up confusing me.  Open them up for other mappings.
-"nnoremap <CR> <C-]>
-"nnoremap <BS> <C-T>
 
 " <Enter> inserts a line, even in normal mode
 " nnoremap <CR> i<CR><ESC>
@@ -56,18 +51,11 @@ vnoremap : ;
 " Make it pretty! (I don't need no stinkin' 'ex mode'..)
 map Q gq
 
-" Make p in Visual mode replace the selected text with the "* register.
-" (Which mirrors the system clipboard)
-" vnoremap p <Esc>:let current_reg = @*<CR>gvs<C-R>=current_reg<CR><Esc>
-
 " Walk through buffers
 " nnoremap <Tab>   :bn<cr>
 " nnoremap <S-Tab> :bp<cr>
 nnoremap <C-j> :bn<cr>
 nnoremap <C-k> :bp<cr>
-
-" switch current directory to where the current file is.
-nnoremap cd :chdir %:h<cr>:pwd<cr>
 
 " Leave cursor where it was when yanking!
 vnoremap y ygv<Esc>
@@ -112,6 +100,9 @@ nnoremap <Leader>q :q<cr>
 " TODO: Resourcing vimrc like this doesn't actually check for a successful load
 nnoremap <Leader>s :source $MYVIMRC<cr>:echo "vimrc reloaded (we hope)."<cr>
 
+" Edit the vimrc file, changing the current directory to its location
+nnoremap <leader>S :edit $MYVIMRC<cr>:cd %:h<cr>
+
 " Reload current file
 nnoremap <Leader>e :e<cr>
 
@@ -130,6 +121,9 @@ nnoremap <Leader>r :!./%<cr>
 " make current file executable
 nnoremap <Leader>x :!chmod +x %<cr>
 
+" set vim's current directory to that of the current file
+nnoremap <leader>cd :chdir %:h<cr>:pwd<cr>
+
 " Underline the current line with various symbols.
 " (Very handy for, e.g. Markdown )
 "   * underline length matches the line above
@@ -140,10 +134,6 @@ nnoremap <leader># yypv$r#yy
 nnoremap <leader>" yypv$r"yy
 nnoremap <leader>* yypv$r*yy
 nnoremap <leader>U yypv$r━yy
-
-" 'Save as':
-"   Write to a filename (prompted for) and switch to it.
-nnoremap <leader>S :sav
 
 " Paste from system clipboard
 nnoremap <leader>i :set paste<cr>"*p:set nopaste<cr>
