@@ -192,3 +192,12 @@ vnoremap // <Esc>/\%V
 "   You know, it might be good to have <Tab> call a function/command that checks
 "   context and only tries to complete if there is something TO complete..
 inoremap <S-Tab> <C-P>
+
+" Go to the definition of the current function in the code base.
+"
+"   This assumes a code base versioned by git, and requires the presence of
+"   tpope's fugitive plugin.
+"
+"   The regex searches for 'function' followed by any non-zero whitespace,
+"   followed by exactly the word under the cursor.
+nnoremap <leader>gD :Ggrep 'function +\<<cword>\>'<cr>gg''
