@@ -52,8 +52,8 @@ vnoremap : ;
 map Q gq
 
 " Walk through buffers
-" nnoremap <Tab>   :bn<cr>
-" nnoremap <S-Tab> :bp<cr>
+nnoremap <Tab>   :bn<cr>
+nnoremap <S-Tab> :bp<cr>
 nnoremap <C-j> :bn<cr>
 nnoremap <C-k> :bp<cr>
 
