@@ -185,3 +185,10 @@ vnoremap  "+y:let @*=@+<cr>:echom "Selection copied to system clipboard"<cr>
 
 " Search only within selection (de-selects text in the process)
 vnoremap // <Esc>/\%V
+
+" <Tab> in insert mode triggers vim's internal autocompletion.  You can stil
+" insert tabs by using Shift-Tab
+"
+"   You know, it might be good to have <Tab> call a function/command that checks
+"   context and only tries to complete if there is something TO complete..
+inoremap <S-Tab> <C-P>
