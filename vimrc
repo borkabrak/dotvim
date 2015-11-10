@@ -11,6 +11,8 @@
 "
 "   FEATURES:
 "   -------------
+" * When you leave a window and come back, visual selections are not
+"   preserved.  Could this be done, though, with BufEnter/Leave autocommands?
 "
 " * Diff between current buffer and its file on disk
 "
