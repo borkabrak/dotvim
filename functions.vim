@@ -44,7 +44,25 @@ function! ProjectGrepPHP(pattern)
 endfunction
 "================================================================
 
-" Read the file aloud
+" Append modeline after last line in buffer.
+"   (Copied from 'http://vim.wikia.com/wiki/Modeline_magic')
+"
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+"
+" Interestingly, this will cause an error if the 'vim:' line in this function
+" definition is too close to either end of this file, because vim thinks it
+" is, itself, an actual modeline.  Fair enough, I guess?  I mean, how is it
+" really supposed to know?  What else would you expect it to do?
+function! AppendModeline()
+  let l:modeline = printf(" vim: ft=%s set ts=%d sw=%d tw=%d %set :",
+        \ &filetype, &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+
+" Read the file aloud (if espeak is installed)
 function! Read()
     call system("espeak -v f2 -s 140 -p 40 -f", expand(%))
 endfunction
+

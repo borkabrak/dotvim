@@ -177,6 +177,9 @@ nnoremap <leader>cL oconsole.log("");<esc>hhi
 " Format the current paragraph
 nnoremap <leader>Qp mt{gq}'t
 
+" Call a function to append a modeline based on current settings
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
 " Ctrl-C copies to system clipboard
 vnoremap  "+y:let @*=@+<cr>:echom "Selection copied to system clipboard"<cr>
 
