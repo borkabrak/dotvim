@@ -186,6 +186,9 @@ vnoremap  "+y:let @*=@+<cr>:echom "Selection copied to system clipboard"<cr>
 " Search only within selection (de-selects text in the process)
 vnoremap // <Esc>/\%V
 
+" Run the @r register as a macro, recursively
+nnoremap <leader> :set nowrapscan<cr>:let @r.='@r'<cr>@r
+
 " <Tab> in insert mode triggers vim's internal autocompletion.  You can stil
 " insert tabs by using Shift-Tab
 "
