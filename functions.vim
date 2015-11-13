@@ -66,3 +66,7 @@ function! Read()
     call system("espeak -v f2 -s 140 -p 40 -f", expand(%))
 endfunction
 
+function! FindInProject(pattern)
+    echom "Searching for '" a:pattern "':"
+    Ggrep a:pattern
+endfunction

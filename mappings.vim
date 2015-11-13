@@ -204,3 +204,4 @@ inoremap <S-Tab> <C-P>
 "   The regex searches for 'function' followed by any non-zero whitespace,
 "   followed by exactly the word under the cursor.
 nnoremap <leader>gD :Ggrep 'function +\<<cword>\>'<cr>gg''
+"nnoremap <leader>gD :call FindInProject(expand('<cword>'))<cr>
