@@ -186,6 +186,9 @@ vnoremap  "+y:let @*=@+<cr>:echom "Selection copied to system clipboard"<cr>
 " Search only within selection (de-selects text in the process)
 vnoremap // <Esc>/\%V
 
+" Run the @r register as a macro, recursively
+nnoremap <leader> :set nowrapscan<cr>:let @r.='@r'<cr>@r
+
 " <Tab> in insert mode triggers vim's internal autocompletion.  You can stil
 " insert tabs by using Shift-Tab
 "
@@ -201,3 +204,4 @@ inoremap <S-Tab> <C-P>
 "   The regex searches for 'function' followed by any non-zero whitespace,
 "   followed by exactly the word under the cursor.
 nnoremap <leader>gD :Ggrep 'function +\<<cword>\>'<cr>gg''
+"nnoremap <leader>gD :call FindInProject(expand('<cword>'))<cr>

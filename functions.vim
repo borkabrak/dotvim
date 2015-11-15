@@ -76,4 +76,7 @@ function! WritingMode(unset)
     " Automatically format current paragraph when returning to normal mode
     imap <Esc> <Esc>mx{gq}'x
 
+function! FindInProject(pattern)
+    echom "Searching for '" a:pattern "':"
+    Ggrep a:pattern
 endfunction
