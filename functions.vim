@@ -66,3 +66,14 @@ function! Read()
     call system("espeak -v f2 -s 140 -p 40 -f", expand(%))
 endfunction
 
+function! WritingMode(unset)
+" Things to make vim enough of a word processor to be suitable for creative
+" writing
+
+    " A nice light-background color scheme
+    colorscheme scheakur
+
+    " Automatically format current paragraph when returning to normal mode
+    imap <Esc> <Esc>mx{gq}'x
+
+endfunction
