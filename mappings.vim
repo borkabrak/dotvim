@@ -182,6 +182,8 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 " Ctrl-C copies to system clipboard
 vnoremap  "+y:let @*=@+<cr>:echom "Selection copied to system clipboard"<cr>
+" Ctrl-X copies the text to the system clipboard and deletes it
+vnoremap  "+x:let @*=@+<cr>:echom "Selection moved to system clipboard"<cr>
 
 " Search only within selection (de-selects text in the process)
 vnoremap // <Esc>/\%V
