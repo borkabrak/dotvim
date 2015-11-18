@@ -211,3 +211,11 @@ nnoremap <leader>gF :Ggrep '\<<cword>\>'<cr>gg``:copen<cr>
 
 nnoremap <leader>co :copen<cr>
 nnoremap <leader>cc :cclose<cr>
+
+" THIS ONLY WORKS AT AHA
+" Replace a selected sql statement with its result set (oh, yeah)
+" NOTE:  THIS RUNS ALL OF EVERY SELECTED LINE
+vnoremap <leader>sql :!sql \| column -s~ -t<cr>
+" Normal mode mapping for running just the current line.
+nnoremap <leader>sql V:'<,'>!sql \| column -s~ -t<cr>
+
