@@ -1,5 +1,5 @@
-" NVIM-SPECIFIC SETTINGS
-"-----------------------
+" Neovim startup configuration
+"-----------------------------
 
 " Shortcut to escape from terminal mode (NVIM only)
 " This is a remap of the command that normally switches to the previously
