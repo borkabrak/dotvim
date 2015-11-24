@@ -196,6 +196,8 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 " Ctrl-C copies to system clipboard
 vnoremap  "+y:let @*=@+<cr>:echom "Selection copied to system clipboard"<cr>
+" Ctrl-X copies the text to the system clipboard and deletes it
+vnoremap  "+x:let @*=@+<cr>:echom "Selection moved to system clipboard"<cr>
 
 " Search only within selection (de-selects text in the process)
 vnoremap // <Esc>/\%V
@@ -217,7 +219,8 @@ inoremap <S-Tab> <C-P>
 "
 "   The regex searches for 'function' followed by any non-zero whitespace,
 "   followed by exactly the word under the cursor.
-nnoremap <leader>gD :Ggrep 'function +\<<cword>\>'<cr>gg''
+nnoremap <leader>gD :Ggrep 'function +\<<cword>\>'<cr>gg``:copen<cr>
+nnoremap <leader>gF :Ggrep '\<<cword>\>'<cr>gg``:copen<cr>
 "nnoremap <leader>gD :call FindInProject(expand('<cword>'))<cr>
 
 " Anything that makes documentation easier is good.
