@@ -173,6 +173,8 @@ call vundle#begin()
   "     Try running it on its own help page.
   Plugin 'ponzellus/AnsiEsc'
 
+  " This is supposed to provide some pretty amazing autocomplete functionality
+  Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
 
