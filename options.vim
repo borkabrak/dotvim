@@ -31,11 +31,12 @@ set listchars+=tab:]-,trail:•,extends:❯,precedes:❮
 " Indent/outdent to the next tabstop
 set shiftround
 
+" Tabbing around tries to be smart about shiftwidth/tabstop distinctions
 set smarttab
 
 " ignore case in searches...
 set ignorecase
-" ...unless the pattern has uppercase characters or '\C' in it.
+" ...unless the pattern has uppercase characters or '\C' in it
 set smartcase
 
 set autoindent
@@ -88,8 +89,10 @@ set viminfo+=%
 " Abbreviate various messages
 set shortmess=atToOs
 
-" show line numbers - setting both 'number' and 'relativenumber' puts us in a
-" sort of mixed mode, where relative numbers are used.
+" show line numbers - setting both 'number' and 'relativenumber' uses a sort
+" of mixed mode, where relative numbers are displayed on all lines *except*
+" the current one.  This makes motion counts easier to see, while still
+" leaving the current line in the file obvious.
 set number
 set relativenumber
 

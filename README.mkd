@@ -5,3 +5,15 @@ This is a portable version of my vim setup
 After an initial checkout, you'll probably have to update the plugins (which
 have their own git repos by doing a :BundleInstall! )
 
+BRANCHES
+========
+
+master
+------
+Of course
+
+doc 
+----
+This is for NON-FUNCTIONAL documentation, comments, and formatting
+changes.  Very important stuff, but nice to keep separate from things that
+affect how the code actually behaves.
