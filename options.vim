@@ -101,3 +101,6 @@ set nohlsearch
 
 " Respond to the mouse
 set mouse=a
+
+" Highlight the line with the cursor
+set cursorline
