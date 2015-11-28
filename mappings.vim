@@ -189,7 +189,7 @@ nnoremap <leader>h :set hlsearch!<cr>
 nnoremap <leader>cL oconsole.log("");<esc>hhi
 
 " Format the current paragraph
-nnoremap <leader>Qp mt{gq}'t
+nnoremap <leader>Qp mt{gq}`t
 
 " Call a function to append a modeline based on current settings
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
