@@ -10,10 +10,6 @@
 inoremap jj <ESC>
 inoremap JJ <ESC>
 
-" Use the command window instead of the normal command line (and start in
-" insert mode)
-" nnoremap : q:i
-
 " Horizontally resize windows with Ctrl-Shift-h/l
 nnoremap  >
 nnoremap  <
@@ -33,6 +29,24 @@ noremap <F7> :source ~/.vim/shutdown_session.vim<CR>
 " Switch these.
 nnoremap ` '
 nnoremap ' `
+
+" " Switch enter-command-mode with next-search-in-line
+" "   * In both normal and visual mode
+" "   * Use the command window instead of the bizarrely emacs-y default 
+" """""""""""""""""""""""""""""""""""""""""""""""""""
+"     " Normal Mode
+"     nnoremap ; q:i
+"         "nnoremap ; :
+"     nnoremap : ;
+"     " Visual Mode
+"     vnoremap ; q:i
+"         "vnoremap ; :
+"     vnoremap : ;
+" set cmdwinheight=3
+
+" Use the command window instead of the normal command line (and start in
+" insert mode)
+" nnoremap : q:i
 
 " Switch ':' (command mode) and ';' (next 'f/t')
 nnoremap ; :
@@ -57,7 +71,7 @@ nnoremap <S-Tab> :bp<cr>
 nnoremap <C-j> :bn<cr>
 nnoremap <C-k> :bp<cr>
 
-" Leave cursor where it was when yanking!
+" Leave cursor where it was when yanking in visual mode!
 vnoremap y ygv<Esc>
 vnoremap Y Ygv<Esc>
 
@@ -219,3 +233,5 @@ vnoremap <leader>sql :!sql \| column -s~ -t<cr>
 " Normal mode mapping for running just the current line.
 nnoremap <leader>sql V:'<,'>!sql \| column -s~ -t<cr>
 
+" Anything that makes documentation easier is good.
+nnoremap <leader>todo OTODO: <Esc>

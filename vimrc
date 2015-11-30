@@ -11,6 +11,9 @@
 "
 "   FEATURES:
 "   -------------
+" * When switching buffers, put cursor in last postion on line, not just last
+"   line
+"
 " * When you leave a window and come back, visual selections are not
 "   preserved.  Could this be done, though, with BufEnter/Leave autocommands?
 "
@@ -117,6 +120,12 @@ autocmd InsertLeave * set relativenumber
 " :Sudosave - for when you realize you SHOULD have opened that file with
 "             escalated privileges.
 command! Sudosave write !sudo tee % > /dev/null
+
+" Under certain lighting conditions, like the bus, I want a lighter background
+function! Golight()
+    colorscheme scheakur
+endfunction
+command! Golight call Golight()
 
 " :W is an alias for :Sudosave
 cnoreabbrev W Sudosave

@@ -66,7 +66,29 @@ function! Read()
     call system("espeak -v f2 -s 140 -p 40 -f", expand(%))
 endfunction
 
+" Things to make vim enough of a word processor to be suitable for creative
+" writing
+" TODO: Enable restoration of earlier state.  (Save/restore a session file,
+" but with only certain things saved?)
+function! WritingMode(unset)
+
+    " wrap long lines
+    set wrap
+
+    " A nice light-background color scheme
+    colorscheme scheakur
+
+    " Automatically format current paragraph when returning to normal mode
+    imap <Esc> <Esc>mx{gq}'x
+
+endfunction
+
 function! FindInProject(pattern)
     echom "Searching for '" a:pattern "':"
     Ggrep a:pattern
+endfunction
+
+" Start a new executable script
+function! MakeScript(type, name)
+    echom "Making a new" a:type "script named" a:name
 endfunction
