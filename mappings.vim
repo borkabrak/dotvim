@@ -7,9 +7,13 @@
 
 " Easier than flailing away at the <ESC> key all day..
 " (later jon says you can also try Alt-E or ^[)
+"
+" You can also remap CapsLock and Escape, but you can't do it in vim.  Try this
+" command from a shell or in ~/.profile:
+"   setxkbmap -option caps:swapescape
+
 inoremap jj <ESC>
 inoremap JJ <ESC>
-
 " Horizontally resize windows with Ctrl-Shift-h/l
 nnoremap  >
 nnoremap  <
@@ -130,7 +134,7 @@ nnoremap <Leader>t :r!date +"\%F \%r"<cr>
 nnoremap <Leader>D :r!date +"\%F"<cr>
 
 " run the current file
-nnoremap <Leader>r :!./%<cr>
+"nnoremap <Leader>r :!./%<cr>
 
 " make current file executable
 nnoremap <Leader>x :!chmod +x %<cr>

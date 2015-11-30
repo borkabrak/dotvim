@@ -96,7 +96,7 @@ call vundle#begin()
     endfunction
     let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
 
-  " Zen coding - the original (one I installed.  Default key: ^Y,)
+  " 'Zen' coding - the original
   Plugin 'mattn/emmet-vim'
 
   " NERDTree - The tried-and-true file browser

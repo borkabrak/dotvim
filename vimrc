@@ -11,6 +11,10 @@
 "
 "   FEATURES:
 "   -------------
+" * <Enter> to open the file under the cursor should do so first relative to
+"   vim's pwd, then the directory of the current file, then the git root (if
+"   there is one)
+"
 " * When switching buffers, put cursor in last postion on line, not just last
 "   line
 "
