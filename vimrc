@@ -248,14 +248,18 @@ endif
 dig :) 9786
 
 
-" TODO: Get this to work
+" TODO: Get this to work properly.  Right now it's kind of a horrific jalopy
 function! FoldFunctions()
 
-    "We'll write to a register, so preserve it's contents in the temp register
+    "We'll write to a register, so preserve its contents in the temp register
     let @"=@f
 
-    "Also preserve the cursor position
-    mx
+    "preserve the cursor position
+    "execute "normal mx"
+
+    " Set the foldmethod to allow this to work (since I don't use foldmethod
+    " elsewhere)
+    set foldmethod=manual
 
     "Load the macro that actually does the folding
     "let @f='/^\s*\(public\|private\)\?\s*function<cr>/{<cr>zf%j@f'
@@ -265,16 +269,16 @@ function! FoldFunctions()
     set nowrapscan
 
     " How to go to top of buffer and execute the macro?
-    " ???
+    execute "normal gg@f"
 
     " Restore the original value of the register we overwrote
     let @f=@"
 
     " Restore original value of wrapscan (for now, just activate it)
-    set wrapscan
+    "set wrapscan
 
     " Restore cursor position
-    `x
+    "execute "`x"
 
 endfunction
 
