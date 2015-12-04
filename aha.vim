@@ -12,8 +12,10 @@ nnoremap <leader>Ld o{{ dd() }}<Esc>F(a
 nmap <leader>LD <leader>Ld
 
 " Print a log message from within Laravel
-nnoremap <leader>Ll o\Log::info("");<Esc>F(la
+" nnoremap <leader>Ll o\Log::info("");<Esc>F(la
+nnoremap <leader>Ll lF$veyo\Log::info(print_r( array('"' => "), true));<Esc>?"<cr>n
 nmap <leader>LL <leader>Ll
+
 
 " Print a log message from within HTML
 nnoremap <leader>Lh o<pre>{{ }}</pre><Esc>?{<cr>a
