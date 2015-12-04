@@ -13,7 +13,8 @@ nmap <leader>LD <leader>Ld
 
 " Print a log message from within Laravel
 " nnoremap <leader>Ll o\Log::info("");<Esc>F(la
-nnoremap <leader>Ll lF$veyo\Log::info(print_r( array('"' => "), true));<Esc>?"<cr>n
+nnoremap <leader>Ll lF$veyo\Log::info(print_r( array(<cr>'message' => '%',<cr>'"' => ",<cr>), true));<Esc>?message<cr>2Wvi'
+
 nmap <leader>LL <leader>Ll
 
 
