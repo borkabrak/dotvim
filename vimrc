@@ -11,6 +11,12 @@
 "
 "   FEATURES:
 "   -------------
+" * Source a file upon startup called registers.vim, macros.vim, or some such.
+"   It loads various registers with generally useful macros.  Also, it
+"   contains a command to re-source itself, resetting all the used registers
+"   to their defaults, should they get changed in the course of normal use.
+"
+"
 " * When switching buffers, put cursor in last postion on line, not just last
 "   line
 "
