@@ -26,8 +26,8 @@ endfunction
 
 " Note the CAPTIAL W for the confirm variants, and the visual ones.. well,
 " they're what happens in visual mode.
-nnoremap <leader>rtw :call RemoveTrailingWhitespace()<cr>
-nnoremap <leader>rtW :call RemoveTrailingWhitespaceConfirm()<cr>
+nnoremap <leader>rtw mx:call RemoveTrailingWhitespace()<cr>`x
+nnoremap <leader>rtW mx:call RemoveTrailingWhitespaceConfirm()<cr>`x
 vnoremap <leader>rtw :call RemoveTrailingWhitespaceVisual()<cr>
 vnoremap <leader>rtW :call RemoveTrailingWhitespaceVisualConfirm()<cr>
 
