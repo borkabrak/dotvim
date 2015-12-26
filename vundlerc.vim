@@ -177,6 +177,15 @@ call vundle#begin()
 
   " This is supposed to provide some pretty amazing autocomplete functionality
   Plugin 'Valloric/YouCompleteMe'
+
+  " Inline highlighting of CSS color declarations.  Pretty cool.
+  "     (A name without a slash for the Plugin command has an assumed prefix of 'vim-scripts/')
+  Plugin 'css_color'
+
+  " Color *picker*
+  Plugin 'KabbAmine/vCoolor.vim'
+  nnoremap <leader>C :VCoolor<cr>
+
 call vundle#end()
 filetype plugin indent on
 

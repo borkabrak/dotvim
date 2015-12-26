@@ -33,6 +33,8 @@ noremap <F7> :source ~/.vim/shutdown_session.vim<CR>
 " Switch these.
 nnoremap ` '
 nnoremap ' `
+vnoremap ` '
+vnoremap ' `
 
 " " Switch enter-command-mode with next-search-in-line
 " "   * In both normal and visual mode
@@ -60,20 +62,12 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
-" <Enter> inserts a line, even in normal mode
-" nnoremap <CR> i<CR><ESC>
-
-" Backspacing over a character deletes it, even in normal mode
-" nnoremap <BS> X
-
 " Make it pretty! (I don't need no stinkin' 'ex mode'..)
 map Q gq
 
-" Walk through buffers
+" Page through open buffers
 nnoremap <Tab>   :bn<cr>
 nnoremap <S-Tab> :bp<cr>
-nnoremap <C-j> :bn<cr>
-nnoremap <C-k> :bp<cr>
 
 " Leave cursor where it was when yanking in visual mode!
 vnoremap y ygv<Esc>
@@ -154,7 +148,7 @@ nnoremap <leader>* yypv$r*yy
 nnoremap <leader>U yypv$r━yy
 
 " Paste from system clipboard
-nnoremap <leader>i :set paste<cr>"*p:set nopaste<cr>
+nnoremap <leader>i :set paste<cr>"+p:set nopaste<cr>
 
 " Select what was just pasted
 nnoremap gp `[v`]
@@ -180,12 +174,6 @@ vnoremap <silent># y?0<cr>
 " based)
 nnoremap <leader>W :!x-www-browser <cfile><cr>
 
-" A couple of mapping to step through quickfix results easier:
-nnoremap <leader>n :cnext<cr>
-nnoremap <leader>N :cprev<cr>
-" duplicate, yeah, but I keep trying it..
-nnoremap <leader>p :cprev<cr>
-
 " Toggle highlighting searches
 nnoremap <leader>h :set hlsearch!<cr>
 
@@ -198,12 +186,15 @@ nnoremap <leader>Qp mt{gq}`t
 " Call a function to append a modeline based on current settings
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
-" Ctrl-C copies to system clipboard
+" Ctrl-A selects everything in the current buffer
+nnoremap <C-a> ggVG
+" Ctrl-C copies selected text to the system clipboard
 vnoremap  "+y:let @*=@+<cr>:echom "Selection copied to system clipboard"<cr>
-" Ctrl-X copies the text to the system clipboard and deletes it
+" Ctrl-X *cuts* to the system clipboard
 vnoremap  "+x:let @*=@+<cr>:echom "Selection moved to system clipboard"<cr>
 
-" Search only within selection (de-selects text in the process)
+" Search only within selection (wraps around previously selected text only,
+" but de-selects text in the process)
 vnoremap // <Esc>/\%V
 
 " Run the @r register as a macro, recursively
@@ -229,3 +220,7 @@ nnoremap <leader>gF :Ggrep '\<<cword>\>'<cr>gg``:copen<cr>
 
 " Anything that makes documentation easier is good.
 nnoremap <leader>todo OTODO: <Esc>
+
+nnoremap <leader>ev :edit ~/.vim/
+nnoremap <leader>eh :edit ~/
+nnoremap <leader>ez :edit ~/.z

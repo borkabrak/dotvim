@@ -10,5 +10,10 @@
 " not.  Kewl.
 tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
 
+" TODO:
+"   * Just for terminal buffers, map <leader><Esc> to re-enter terminal mode.
+"   (Research terminal buffer events?  Or ftplugin/terminal.vim, maybe?)
+
+
 " NVIM-specific stuff done.  Now load regular vim config
 source $HOME/.vim/vimrc

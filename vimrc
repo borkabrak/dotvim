@@ -73,8 +73,16 @@ syntax enable
 " refer to it successfully.
 let g:mapleader = ","
 
-" CONFIGURATION OPTIONS
+" VUNDLE PLUGIN MANAGEMENT
 " ------------------------------------------------------------------------
+  runtime! vundlerc.vim
+
+" SET COLORSCHEME
+"     Include colorscheme setting separately, so it can be ignored by git and thus
+"     independent of setup instantiation.
+  runtime colorscheme.vim
+
+" CONFIGURATION OPTIONS
   runtime! options.vim
 
 " KEY MAPPINGS
@@ -84,10 +92,6 @@ let g:mapleader = ","
 " FUNCTION DEFINITIONS
 " ------------------------------------------------------------------------
   runtime! functions.vim
-
-" VUNDLE PLUGIN MANAGEMENT
-" ------------------------------------------------------------------------
-  runtime! vundlerc.vim
 
 " Load AHA-specific settings if they exist
 " ------------------------------------------------------------------------
@@ -100,11 +104,6 @@ let g:mapleader = ","
 " Read man pages within vim (<leader>K)
 " ------------------------------------------------------------------------
   runtime! ftplugin/man.vim
-
-" Include colorscheme setting separately, so it can be ignored by git and thus
-" independent of setup instantiation.
-" ------------------------------------------------------------------------
-  runtime colorscheme.vim
 
 " ========================================================================
 " AUTOCOMMANDS:
