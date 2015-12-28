@@ -187,7 +187,7 @@ nnoremap <leader>Qp mt{gq}`t
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 " Ctrl-A selects everything in the current buffer
-nnoremap <C-a> ggVG
+" nnoremap <C-a> ggVG
 " Ctrl-C copies selected text to the system clipboard
 vnoremap  "+y:let @*=@+<cr>:echom "Selection copied to system clipboard"<cr>
 " Ctrl-X *cuts* to the system clipboard
