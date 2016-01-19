@@ -6,13 +6,17 @@
 " ==============
 
 " Easier than flailing away at the <ESC> key all day..
-" (later jon says you can also try Alt-E or ^[)
+" (later jon says you can also try Alt-<char> or ^[)
 inoremap jj <ESC>
 inoremap JJ <ESC>
 
 " Horizontally resize windows with Ctrl-Shift-h/l
 nnoremap  >
 nnoremap  <
+
+" Horizontally resize windows with Ctrl-Shift-</>
+nnoremap [1;6n >
+nnoremap [1;6l <
 
 " SESSION MANAGEMENT MAPPINGS:
 " ------------------------------------------------------------------------------
