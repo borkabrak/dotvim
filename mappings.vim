@@ -224,3 +224,8 @@ nnoremap <leader>todo OTODO: <Esc>
 nnoremap <leader>ev :edit ~/.vim/
 nnoremap <leader>eh :edit ~/
 nnoremap <leader>ez :edit ~/.z
+
+" Uppercase the current line
+nnoremap <leader>UU mx0gU$`x
+" Lowercase the current line
+nnoremap <leader>uu mx0gu$`x

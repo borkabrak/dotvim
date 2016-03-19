@@ -222,7 +222,7 @@ cnoreabbrev W Sudosave
 
 " Highlight trailing whitespace as an error (:help match, matchadd,
 " matchdelete for finer control here)
-match ErrorMsg '\s\+$'
+" match ErrorMsg '\s\+$'
 " Cursor attributes to better indicate the active editing mode
 if &term =~ '^xterm-256color'
 

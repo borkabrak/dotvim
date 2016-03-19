@@ -98,8 +98,8 @@ call vundle#begin()
 
   " 'Zen' coding - the original
   Plugin 'mattn/emmet-vim'
-  let g:user_emmet_leader_key = '<C-j>'
-  imap <C-y> (Try ^j for emmet stuff)<Esc>v%
+  "let g:user_emmet_leader_key = '<C-j>'
+  imap <C-j> <C-y>
 
   " NERDTree - The tried-and-true file browser
   Plugin 'scrooloose/nerdtree'
@@ -185,6 +185,9 @@ call vundle#begin()
   " Color *picker*
   Plugin 'KabbAmine/vCoolor.vim'
   nnoremap <leader>C :VCoolor<cr>
+
+  " Typescript syntax, etc.
+  Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()
 filetype plugin indent on
