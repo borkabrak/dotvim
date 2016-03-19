@@ -8,12 +8,19 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Do NOT try to emulate vi.
+set nocompatible
+
+" Enable syntax highlighting
+syntax enable
+
 " Enable unicode.  Check first, as re-enabling causes issues when reloading.
 if &encoding !~ '^utf-8'
     set encoding=utf-8
 endif
 
 " Use 256 colors
+"   - This one is required before some colorschemes can take effect
 set t_Co=256
 
 " Allow hidden buffers (so you don't have to save all changes before so much
