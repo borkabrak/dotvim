@@ -10,9 +10,12 @@
 inoremap jj <ESC>
 inoremap JJ <ESC>
 
-" Horizontally resize windows with Ctrl-Shift-h/l
+" Resize windows with Ctrl-Shift-[h/j/k/l]
 nnoremap  >
 nnoremap  <
+
+nnoremap  -
+nnoremap  +
 
 " Horizontally resize windows with Ctrl-Shift-</>
 nnoremap [1;6n >
@@ -239,3 +242,8 @@ nnoremap <leader>sql V:'<,'>!sql \| column -s~ -t<cr>
 
 " Anything that makes documentation easier is good.
 nnoremap <leader>todo OTODO: <Esc>
+
+"" Find [n]ext git-style [c]onflict [m]arker 
+"" CAN'T SEEM TO GET THIS TO SEARCH FOR THREE PIPES AT THE BEGINNING OF A LINE
+nnoremap <leader>ncm /^<<<\|^===\|^>>><cr>
+
