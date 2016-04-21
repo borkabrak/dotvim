@@ -8,8 +8,8 @@
 " Easier than flailing away at the <ESC> key all day..
 " (later jon says you can also try Alt-E or ^[)
 "
-" You can also remap CapsLock and Escape, but you can't do it in vim.  Try this
-" command from a shell or in ~/.profile:
+" You can also remap CapsLock and Escape for the entire desktop. Try this
+" command from a shell or put it in ~/.profile:
 "   setxkbmap -option caps:swapescape
 
 inoremap jj <ESC>
@@ -108,9 +108,9 @@ nnoremap <Leader>d :bd<cr>
 " quit easily
 nnoremap <Leader>q :q<cr>
 
-" reload vimrc files
+" reload vimrc
 " TODO: Resourcing vimrc like this doesn't actually check for a successful load
-nnoremap <Leader>s :source $MYVIMRC<cr>:echo "vimrc reloaded (we hope)."<cr>
+nnoremap <Leader>s :source $MYVIMRC<cr>:echo "$MYVIMRC reloaded (we hope)."<cr>
 
 " Edit the vimrc file, changing the current directory to its location
 nnoremap <leader>S :edit $MYVIMRC<cr>:cd %:h<cr>
@@ -229,3 +229,16 @@ nnoremap <leader>ez :edit ~/.z
 nnoremap <leader>UU mx0gU$`x
 " Lowercase the current line
 nnoremap <leader>uu mx0gu$`x
+
+" open :help on the word under the cursor (without moving the cursor)
+nnoremap <leader>H mx"xyiw`x:help x<cr>
+
+" Set the colorscheme to the WORD under the cursor (without moving the cursor)
+nnoremap <leader>co mx"xyiW:colorscheme x<cr>:echom "Color scheme: x"<cr>`x
+
+" Set background light/dark
+" (This slows down the buffer list invoked by <leader>b)
+nnoremap <leader>bgl :setlocal background=light<CR>
+nnoremap <leader>bgd :setlocal background=dark<CR>
+" If the user pauses, as if undecided, show the current setting.
+nnoremap <leader>bg  :setlocal background?<CR>

@@ -65,7 +65,7 @@ call vundle#begin()
 
   " Sorta like vimium's helptags when browsing, but this is for moving around
   " in the file.  Key: <leader><leader>w
-  Plugin 'Lokaltog/vim-easymotion'
+  " Plugin 'Lokaltog/vim-easymotion'
 
   " Have tags without thinking about them
   "Bundle 'xolox/vim-easytags'
@@ -141,13 +141,19 @@ call vundle#begin()
   Plugin 'tpope/vim-jdaddy'
 
   " unimpaired.vim: pairs of handy bracket mappings http://www.vim.org/scripts/script.php?script_id=1590
-  " ( The proximate reason for installing this is to us [q/]q/[Q/]Q to step
+  " ( The proximate reason for installing this is to use [q/]q/[Q/]Q to step
   " through the quickfix list. )
   Plugin 'tpope/vim-unimpaired'
 
   " Laravel's Blade syntax
-  Plugin 'xsbeats/vim-blade'
+  " Plugin 'xsbeats/vim-blade'
 
+  " Vim-orgmode: Text outlining and task management for Vim based on Emacs'
+  " Org-Mode.
+
+  " speeddating - recommended by orgmode
+  Plugin 'tpope/vim-speeddating'
+  Plugin 'vim-scripts/utl.vim'
   Plugin 'jceb/vim-orgmode'
 
   Plugin 'AndrewRadev/linediff.vim'
@@ -189,6 +195,16 @@ call vundle#begin()
   " Typescript syntax, etc.
   Plugin 'leafgarland/typescript-vim'
 
+  " Session manager
+  Plugin 'vim-scripts/sessionman.vim'
+
+  " Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc) http://www.vim.org/scripts/script.php?script_id=273
+  Plugin 'taglist.vim'
+
+  " 'The missing motion for vim'
+  Plugin 'justinmk/vim-sneak'
+  let g:sneak#s_next = 1
+  
 call vundle#end()
 filetype plugin indent on
 

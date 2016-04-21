@@ -49,8 +49,11 @@ runtime! options.vim
 " by referring to it as <leader>, allowing us to change the prefix of all
 " those mappings very easily just by changing it here.
 "
-" Define this before any other mappings 
+" KEY MAPPINGS
+" ------------------------------------------------------------------------
+" Define <leader> before any other mappings 
 let g:mapleader = ","
+runtime! mappings.vim
 
 " VUNDLE PLUGIN MANAGEMENT
 " ------------------------------------------------------------------------
@@ -60,10 +63,6 @@ runtime! vundlerc.vim
 "     Include colorscheme setting separately, so it can be ignored by git and thus
 "     independent of setup instantiation.
 runtime! colorscheme.vim
-
-" KEY MAPPINGS
-" ------------------------------------------------------------------------
-runtime! mappings.vim
 
 " FUNCTION DEFINITIONS
 " ------------------------------------------------------------------------
@@ -260,6 +259,15 @@ let @f='/^[^\/]*function.*{/{zf%j@f'
 "   the unicode character with the decimal representation that follows.
 "   (Putting this last because the syntax highlighting doesn't react well to
 "   the parentheses, and miscolors everything that follows.)
-dig :) 9786
-dig :( 9785
 
+"[ ☺ ] Unicode happy face
+digraph :) 9786
+
+"[ ☹ ] Unicode sad face
+digraph :( 9785
+
+"[ … ] horizontal ellipsis
+digraph el 8230
+
+"[ ∙ ] list bullet (A big dot, halfway up the line)
+digraph	>. 8729

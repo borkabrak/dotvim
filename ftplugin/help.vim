@@ -5,3 +5,4 @@
 " Enable Enter/Backspace to follow/return from links
 nnoremap <buffer> <Return> <C-]>
 nnoremap <buffer> <Backspace> <C-o>
+
