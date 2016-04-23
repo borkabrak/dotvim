@@ -1,1 +1,0 @@
-nnoremap MM echom "Howdy"

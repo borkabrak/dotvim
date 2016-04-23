@@ -204,6 +204,9 @@ call vundle#begin()
   " 'The missing motion for vim'
   Plugin 'justinmk/vim-sneak'
   let g:sneak#s_next = 1
+
+  " HTML5 + inline SVG omnicomplete function, indent and syntax for Vim.
+  Plugin 'othree/html5.vim'
   
 call vundle#end()
 filetype plugin indent on
@@ -212,23 +215,11 @@ filetype plugin indent on
 " FOR SOME REASON, THESE CALLS TO UNITE FUNCTIONS CANNOT GO INSIDE VUNDLE
 " SETUP begin/end block: THIS IS MESSY AND LESS THAN IDEAL, BUT WORKS FOR NOW.
 
-" Map commands for inside a unite window
-function! s:unite_my_settings()"{{{
-    nmap <buffer> <C-j>     <Plug>(unite_toggle_auto_preview)
-    " Clear the cache
-    nmap <buffer> <C-r>     <Plug>(unite_redraw)
-
-    "}}}
-endfunction
-autocmd FileType unite call s:unite_my_settings()
-
 " Browse buffers
 nnoremap <leader>b :Unite buffer<cr>
 " Browse files
 nnoremap <leader>f :Unite file<cr>
-" Either this doesn't work, or I don't understand it.. (psst.. try it again)
-" let g:unite_source_history_yank_enable = 1
-" nnoremap <leader>y :<C-u>Unite history/yank<CR>
+
 nnoremap <leader>F :Unite -start-insert file_rec/async:!<cr>
 
 " Set Unite to act sorta like CtrlP:

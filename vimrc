@@ -45,14 +45,9 @@
 "     effect
 runtime! options.vim
 
-" 'mapleader' can be used as a prefix to all sorts of user-defined keymappings
-" by referring to it as <leader>, allowing us to change the prefix of all
-" those mappings very easily just by changing it here.
-"
-" KEY MAPPINGS
-" ------------------------------------------------------------------------
-" Define <leader> before any other mappings 
-let g:mapleader = ","
+runtime! resetConfig.vim
+
+
 runtime! mappings.vim
 
 " VUNDLE PLUGIN MANAGEMENT

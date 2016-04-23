@@ -26,12 +26,17 @@
 "
 "   LOW CONTRAST - easier on the eyes
 "   -------------------------------------
-"   colorscheme wombat256
-"   colorscheme solarized
-"   colorscheme Monokai-chris
-"   colorscheme jellybeans
-"   colorscheme badwolf
+"   wombat256
+"   solarized
+"   Monokai-chris
+"   jellybeans
+"   badwolf
+"   tesla
+"   codeschool
+"   guardian " Like an old photograph
+"   Tomorrow-Night
 
+colorscheme tesla
 " FONTS
 " =======
 "
@@ -61,6 +66,6 @@ nnoremap <leader>font :set guifont=*<cr>
 " designation, but not the first letter of it.)
 nnoremap <leader>gfn mxbv/[^\\]\s<cr>be"xy:setlocal guifont=x<cr>`x
 " Reload settings
-nnoremap <Leader>s :source $MYVIMRC<cr>:source $MYGVIMRC<cr>:echom "$MYVIMRC and $MYGVIMRC reloaded."<cr>
+nnoremap <Leader>rc :source $MYVIMRC<cr>:source $MYGVIMRC<cr>:echom "$MYVIMRC and $MYGVIMRC reloaded."<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

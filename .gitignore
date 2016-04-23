@@ -15,8 +15,12 @@ shada
 bundle
 
 # Except, of course, vundle itself.  This has the additional benefit of
-# preserving the 'bundle' directory
+# preserving the 'bundle' directory (but not its contents)
 !bundle/vundle.vim
 
 # Don't track what colorscheme is used
 colorscheme.vim
+
+# The 'SessionMan' plugin stores session files here
+sessions/
+
