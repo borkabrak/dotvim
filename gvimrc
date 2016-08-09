@@ -9,10 +9,10 @@
 
 " Examples I've liked
 " ---------------------
-"   Try one out by placing the cursor on its name and typing <leader>co.  If
-"   the mapping isn't set, here it is:
+"   Try one out with the word mapping 'co'.  If that mapping isn't set, here it
+"   is:
 "
-"       nnoremap <leader>co mx"xyiW:colorscheme <C-R>x<CR>:echom "Color scheme: <C-R>x"<CR>`x
+"       nnoremap <Leader><Leader>co "xyiW:colorscheme <C-R>x<CR>:echom "Color scheme: <C-R>x"<CR>
 "
 
 "   HIGH CONTRAST - better visibility
@@ -35,8 +35,11 @@
 "   codeschool
 "   guardian " Like an old photograph
 "   Tomorrow-Night
+"   chance-of-storm
 
+" Set the default colorscheme for the GUI
 colorscheme tesla
+
 " FONTS
 " =======
 "
@@ -51,7 +54,7 @@ colorscheme tesla
 "   and must be done with the terminal emulator.
 
 " Open the font selection window
-nnoremap <leader>font :set guifont=*<cr>
+nnoremap <leader><leader>font :set guifont=*<cr>
 
 " Some interesting monospace fonts, many courtesy of fontspace.com:
 " set guifont=M+\ 2m\ regular\ 12
@@ -60,12 +63,13 @@ nnoremap <leader>font :set guifont=*<cr>
 " set guifont=shaakmono\ 16
 " set guifont=fn0t\ 17
 " set guifont=TRAGIC\ BRK\ 8
+set guifont=Cousine\ 12
 
 " Set guifont to the designation under the cursor - (this pattern needs
 " improvement -- make sure the cursor is on the first word of the font
 " designation, but not the first letter of it.)
 nnoremap <leader>gfn mxbv/[^\\]\s<cr>be"xy:setlocal guifont=x<cr>`x
 " Reload settings
-nnoremap <Leader>rc :source $MYVIMRC<cr>:source $MYGVIMRC<cr>:echom "$MYVIMRC and $MYGVIMRC reloaded."<cr>
+nnoremap <Leader><Leader>rc :source $MYVIMRC<cr>:source $MYGVIMRC<cr>:echom "$MYVIMRC and $MYGVIMRC reloaded."<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

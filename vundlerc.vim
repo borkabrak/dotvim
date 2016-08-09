@@ -101,26 +101,43 @@ call vundle#begin()
   "let g:user_emmet_leader_key = '<C-j>'
   imap <C-j> <C-y>
 
+  """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " NERDTree - The tried-and-true file browser
+  "
   Plugin 'scrooloose/nerdtree'
-    " When opening NERDTree, put the cursor on the current file
-    noremap <F2> :NERDTreeFind<cr>
-    let NERDTreeDirArrows=1
-    let NERDTreeShowBookmarks=1
+  """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        let NERDTreeDirArrows=1
+        let NERDTreeShowBookmarks=1
+
+        " When opening NERDTree, show the current directory, but leave the cursor
+        " in the current window
+        noremap <F2> :NERDTreeFind<cr><C-W><C-W>
+
+        " This provides an alternative way to invoke NERDTree, which also serves
+        " as an easy way to close it (NERDTreeFind does not)
+        noremap <S-F2> :NERDTreeToggle<cr>
+        """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+  """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " CtrlP
+  "
+  " A different approach to file navigation.  This is kind of a game changer
+  " for managing buffers
+  Plugin 'kien/ctrlp.vim'
+  """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        " Select from active buffers
+        nnoremap <space><space> :CtrlPBuffer<cr>
+
+        " Make CtrlP rebuild its list next time (in case, e.g., files on disk
+        " have changed.)
+        nnoremap <f3> :CtrlPClearCache<cr>
+        """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
   " Streamlined commenting
   Plugin 'scrooloose/nerdcommenter'
 
   " Live syntax checking
   Plugin 'scrooloose/syntastic'
-
-  " A different approach to file navigation.  This is kind of a game changer
-  " for managing buffers
-  Plugin 'kien/ctrlp.vim'
-    " Make CtrlP rebuild its list next time
-    nnoremap <f3> :CtrlPClearCache<cr>
-    " Use CtrlP only on currently open buffers
-    nnoremap <leader><C-P> :CtrlPBuffer<cr>
 
   " Unite promises to be a replacement for CtrlP (and more).
   " Read more at http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/
@@ -133,7 +150,7 @@ call vundle#begin()
   " Coffeescript support
   Plugin 'kchmck/vim-coffee-script'
 
-  " Better ga, e.g.
+  " Better 'ga', e.g.
   Plugin 'tpope/vim-characterize'
 
   " JSON manipulation and pretty-printing
@@ -148,13 +165,14 @@ call vundle#begin()
   " Laravel's Blade syntax
   " Plugin 'xsbeats/vim-blade'
 
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " Vim-orgmode: Text outlining and task management for Vim based on Emacs'
-  " Org-Mode.
-
-  " speeddating - recommended by orgmode
+  "              Org-Mode.
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   Plugin 'tpope/vim-speeddating'
   Plugin 'vim-scripts/utl.vim'
   Plugin 'jceb/vim-orgmode'
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
   Plugin 'AndrewRadev/linediff.vim'
 
@@ -165,19 +183,23 @@ call vundle#begin()
   " commands to change the context of the shown lines.
   Plugin 'embear/vim-foldsearch'
 
-  " SNIPPETS
-  " The snippets engine
-  Plugin 'SirVer/ultisnips'
-  " The snippets themselves
-  Plugin 'honza/vim-snippets'
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-    " Let snippets split the window?
-    let g:UltiSnipsEditSplit="vertical"
+  " Provide some of TextMate's snippets features
+  Plugin 'msanders/snipmate.vim'
+
+  " Better markdown syntax - some features require 'msanders/snipmate'
+  " Plugin 'hallison/vim-markdown'
+  
+  "" A snippets engine
+  "Plugin 'SirVer/ultisnips'
+  "" The snippets themselves
+  "Plugin 'honza/vim-snippets'
+  "  let g:UltiSnipsExpandTrigger="<tab>"
+  "  let g:UltiSnipsJumpForwardTrigger="<c-b>"
+  "  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+  "  " Let snippets split the window?
+  "  let g:UltiSnipsEditSplit="vertical"
 
   " Provide ':AnsiEsc', to toggle display/interpretation of ANSI control characters (colors, mostly)
-  "
   "     Try running it on its own help page.
   Plugin 'ponzellus/AnsiEsc'
 
@@ -194,6 +216,9 @@ call vundle#begin()
 
   " Typescript syntax, etc.
   Plugin 'leafgarland/typescript-vim'
+
+  " Syntax for LESS (CSS dialect)
+  Plugin 'groenewege/vim-less'
 
   " Session manager
   Plugin 'vim-scripts/sessionman.vim'

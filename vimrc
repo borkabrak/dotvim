@@ -45,8 +45,7 @@
 "     effect
 runtime! options.vim
 
-runtime! resetConfig.vim
-
+" runtime! resetConfig.vim " Not yet implemented
 
 runtime! mappings.vim
 
@@ -187,6 +186,7 @@ function! RedirMessages(msgcmd, destcmd)
  command! -nargs=+ -complete=command TabMessage call RedirMessages(<q-args>, 'tabnew' )
 
  " Convenience command that just passes arguments on to the function
+ "   [ Not convinced this works.. -jdc ]
  command! -nargs=+ -complete=command RedirMessages call RedirMessages(<f-args>)
 " " ==============================================================================
 
@@ -266,3 +266,6 @@ digraph el 8230
 
 "[ ∙ ] list bullet (A big dot, halfway up the line)
 digraph	>. 8729
+
+"[ ≅ ] approximately equal to
+digraph ~= 8773

@@ -9,6 +9,7 @@
 " command is the same to switch windows, whether we're in terminal mode or
 " not.  Kewl.
 tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
+tnoremap <Esc><Esc> <C-\><C-n>
 
 " TODO:
 "   * Just for terminal buffers, map <leader><Esc> to re-enter terminal mode.
