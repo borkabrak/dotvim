@@ -1,9 +1,14 @@
-undo
-backup
-swap
-tmp
+# Files used by my poor-man's session manager mappings.
 shutdown_session.vim
 manual_session.vim
+
+# Use the 'name/*' form instead of just 'name', because we want to create these
+# directories if they don't exist, but don't use git to further track anything
+# inside them.
+undo/*
+backup/*
+swap/*
+tmp/*
 
 # SHADA stand for SHAred DAta, and is sort of like a session file, but only for
 # nvim.  :help shada to read more.
@@ -11,7 +16,7 @@ shada
 
 # Vundle-managed software takes care of itself
 #
-#   Because of how vundle works, these are each inidividual git repositories
+#   Because of how vundle works, these are each individual git repositories
 bundle
 
 # Except, of course, vundle itself.  This has the additional benefit of
